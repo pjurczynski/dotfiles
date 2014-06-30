@@ -9,6 +9,9 @@ export CLICOLOR=true
 
 fpath=($ZSH/functions $fpath)
 
+source "$HOME/.slimzsh/slim.zsh"
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
 autoload -U $ZSH/functions/*(:t)
 
 HISTFILE=~/.zsh_history
@@ -46,3 +49,5 @@ bindkey '^[[5C' end-of-line
 bindkey '^[[3~' delete-char
 bindkey '^[^N' newtab
 bindkey '^?' backward-delete-char
+
+setxkbmap us -variant colemak
