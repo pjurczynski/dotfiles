@@ -1,4 +1,4 @@
-# holman does dotfiles
+# Based on Holman dotfiles
 
 ## dotfiles
 
