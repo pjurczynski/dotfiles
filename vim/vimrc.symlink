@@ -26,6 +26,18 @@ Plugin 'gmarik/Vundle.vim'
 " PLUGINS
 "----------------------------------------------------------
 
+" Integration with tmux
+Plugin 'ervandew/screen'
+
+" move between vim and tmux
+Plugin 'christoomey/vim-tmux-navigator'
+
+" Base 16 coloscheme
+Plugin 'chriskempson/base16-vim'
+
+" A nice color scheme
+Plugin 'Solarized'
+
 " javascript indentation in vim sucks
 Plugin 'Better-Javascript-Indentation'
 
@@ -37,9 +49,6 @@ Plugin 'kien/ctrlp.vim'
 
 " NerdCommenter - comment blocks of code
 Plugin 'The-NERD-Commenter'
-
-" csapprox - make gvim colorschemes work in console
-Plugin 'CSApprox'
 
 " Cofeescript support
 Plugin 'vim-coffee-script'
@@ -83,11 +92,8 @@ Plugin 'ruby.vim'
 " vim-ruby-refactoring - automatic refactorings for ruby
 Plugin 'ecomba/vim-ruby-refactoring'
 
-" A nice color scheme
-Plugin 'Solarized'
-
 " cuztomizable tab completion, continued is the newer version
-Plugin 'SuperTab-continued.'
+Plugin 'vim-scripts/SuperTab--Van-Dewoestine'
 
 " vim-surround - surrounding text with braces, quotes, html tags...
 Plugin 'surround.vim'
@@ -95,9 +101,9 @@ Plugin 'surround.vim'
 " Snipmate - the new version
 Plugin 'MarcWeber/vim-addon-mw-utils.git'
 Plugin 'tomtom/tlib_vim.git'
-Plugin 'scrooloose/snipmate-snippets.git'
-
 Plugin 'garbas/vim-snipmate.git'
+Plugin 'honza/vim-snippets.git'
+Plugin 'scrooloose/snipmate-snippets.git'
 
 " vim-textobj - dependency of rubyblock
 Plugin 'textobj-user'
@@ -109,15 +115,20 @@ Plugin 'textobj-rubyblock'
 Plugin 'slim-template/vim-slim.git'
 
 " rainbow parentheses, mostly for clojure
+Plugin 'scrooloose/nerdtree'
+
+" rainbow parentheses, mostly for clojure
 Plugin 'kien/rainbow_parentheses.vim'
+
+" vim less coloring
+Plugin 'groenewege/vim-less'
 
 call vundle#end()
 filetype plugin indent on
 
 "----------------------------------------------------------
 
-syntax enable                     " Turn on syntax highlighting.
-
+" others settings
 runtime macros/matchit.vim        " Load the matchit plugin.
 
 set encoding=utf-8                " Default encoding
@@ -173,6 +184,7 @@ set autoread                      " automatically read changes from disk
 
 set diffopt+=iwhite               " ignore whitespace in vimdiff
 
+
 " Folding settings
 set foldmethod=indent             " indent based on syntax
 set foldnestmax=3                 " deepest fold is 3 levels
@@ -181,7 +193,6 @@ set nofoldenable                  " don't fold by default
 
 set matchpairs+=<:>               " add < and > to the chars that can be navigated with %
 
-set spell                         " enable spell check
 set spelllang=en_us               " default spell check language
 
 set shell=/bin/zsh
@@ -203,7 +214,10 @@ nnoremap j gj
 nnoremap k gk
 
 " map .md files fo markdown
-au BufNewFile,BufRead *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+" Hamlbars
+autocmd BufNewFile,BufReadPost *.hamlbars set filetype=haml
 
 " automatically strip trailing whitespace for some file types
 autocmd FileType c,cpp,java,php,javascript,html,ruby autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
@@ -217,6 +231,11 @@ map <C-l> <C-w>l:wa<cr>
 " jj and hh to go to normal mode
 imap jj <esc>
 imap hh <esc>
+
+" Snipmate
+imap <C-j> <Plug>snipMateNextOrTrigger
+smap <C-j> <Plug>snipMateNextOrTrigger
+let g:SuperTabMappingForward = '<c-space>'
 
 " CtrlP
 let g:ctrlp_map = '<c-t>'
@@ -245,6 +264,12 @@ set wildignore+=target
 " ignore _deploy and output in nanoc sites
 set wildignore+=_deploy,output
 
+" stuff to ignore when tab completing
+set wildignore+=*.o,*.obj,*~,*.png,*.gif,*.jpg,*.jpeg,*.zip,*.jar,*.pyc
+set wildignore+=*.gem,*/coverage/*,*/log/*,tags,*.rbc,*.ttf,*.eot
+set wildignore+=*/_site/*,*/tmp/*,*/vendor/*,*/public/uploads/*,*/_src/*
+set wildignore+=*/.jhw-cache/*,.vagrant,*/.stuff/*,*/test/reports/*,*/*.egg-info/*
+
 " some Git mappings
 nmap <silent> <leader>gt :Gstatus<cr>
 nmap <silent> <leader>gl :Git pull --rebase<cr>
@@ -267,63 +292,17 @@ map <leader>tg :topleft 100 :split Gemfile<cr>
 map <leader>tt :CommandTFlush<cr>\|:CommandTTag<cr>
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RUNNING TESTS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>s :call RunTestFile()<cr>
-map <leader>S :call RunNearestTest()<cr>
-map <leader>A :call RunTests('')<cr>
-" map <leader>c :w\|:!script/features<cr>
-" map <leader>w :w\|:!script/features --profile wip<cr>
+" Screen settings
+let g:ScreenImpl = 'Tmux'
+let g:ScreenShellTmuxInitArgs = '-2'
+let g:ScreenShellInitialFocus = 'shell'
+let g:ScreenShellQuitOnVimExit = 0
 
-function! RunTestFile(...)
-    if a:0
-        let command_suffix = a:1
-    else
-        let command_suffix = ""
-    endif
-
-    " Run the tests for the previously-marked file.
-    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
-    if in_test_file
-        call SetTestFile()
-    elseif !exists("t:grb_test_file")
-        return
-    end
-    call RunTests(t:grb_test_file . command_suffix)
-endfunction
-
-function! RunNearestTest()
-    let spec_line_number = line('.')
-    call RunTestFile(":" . spec_line_number . " -b")
-endfunction
-
-function! SetTestFile()
-    " Set the spec file that tests will be run for.
-    let t:grb_test_file=@%
-endfunction
-
-function! RunTests(filename)
-    " Write the file and run tests for the given filename
-    :w
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    if match(a:filename, '\.feature$') != -1
-        exec ":!script/features " . a:filename
-    else
-        if filereadable("script/test")
-            exec ":!script/test " . a:filename
-        elseif filereadable("Gemfile")
-            exec ":!bundle exec rspec --color " . a:filename
-        else
-            exec ":!rspec --color " . a:filename
-        end
-    end
-endfunction
+"command! -nargs=? -complete=shellcmd W :w | :call ScreenShellSend("load '".@%."';")
+map <Leader>r :w<CR> :call ScreenShellSend("rspec ".@% . ':' .  line('.'))<CR>
+map <Leader>e :w<CR> :call ScreenShellSend("cucumber --format=pretty ".@% .  ':' . line('.'))<CR>
+map <Leader>w :w<CR> :call ScreenShellSend("break ".@% . ':' .  line('.'))<CR>
+map <Leader>m :w<CR> :call ScreenShellSend("\e[A")<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME CURRENT FILE
@@ -352,20 +331,27 @@ nmap <silent> <leader>d :!mkdir -p %:h<cr>:w<cr>
 nmap <silent> <LocalLeader>f :Ggrep <c-r><c-w> **/*rb<cr>
 nmap <silent> <LocalLeader>F :Ggrep <c-r><c-a> **/*rb<cr>
 
-" solarized settings
-set background=light
-let g:solarized_termtrans=1
-let g:solarized_termcolors=256
-let g:solarized_contrast="high"
-let g:solarized_visibility="high"
-
+"
 " Colors for console
 if !has("gui_running")
   set t_Co=256
 endif
 
-" Scheme
-colorscheme solarized
+" Scheme base Solarized
+" solarized settings
+"let base16colorspace=256
+"set background=light
+"let g:solarized_termtrans=1
+"let g:solarized_termcolors=256
+"let g:solarized_contrast="high"
+"let g:solarized_visibility="high"
+" colorscheme solarized
+
+" Scheme base 16
+set t_Co=256
+let base16colorspace=256
+set background=dark
+colorscheme base16-default
 
 " don't search coverage reports and vcr cassettes
 set wildignore+=spec/reports
@@ -376,10 +362,10 @@ set wildignore+=spec/cassettes
 let $JS_CMD='node'
 
 " set some different setting for the diff mode
-if &diff
-  colorscheme fu_patched " different scheme
-  set nonumber " no line numbers
-endif
+" if &diff
+"   colorscheme fu_patched " different scheme
+"   set nonumber " no line numbers
+" endif
 
 
 " restore last position
@@ -396,3 +382,5 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
+
+syntax enable                     " Turn on syntax highlighting.
