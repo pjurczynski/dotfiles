@@ -1,16 +1,17 @@
+# if you want to check what key is what - type read in zsh terminal and click keys
 bindkey -e
 bindkey '\ew' kill-region
 bindkey -s '\el' "ls\n"
 bindkey '^r' history-incremental-search-backward
-bindkey "^[[5~" up-line-or-history
-bindkey "^[[6~" down-line-or-history
-bindkey '^[[A' up-line-or-search
-bindkey '^[[B' down-line-or-search
+bindkey "^[[5~" up-line-or-history # page up
+bindkey "^[[6~" down-line-or-history # page down
+bindkey '^[[A' up-line-or-search # key up
+bindkey '^[[B' down-line-or-search # key down
 bindkey "^[[H" beginning-of-line
-bindkey "^[[1~" beginning-of-line
+bindkey "^[[1~" beginning-of-line # home
 bindkey "^[OH" beginning-of-line
 bindkey "^[[F"  end-of-line
-bindkey "^[[4~" end-of-line
+bindkey "^[[4~" end-of-line # end
 bindkey "^[OF" end-of-line
 bindkey ' ' magic-space
 bindkey "^[[1;5C" forward-word
@@ -20,4 +21,3 @@ bindkey '^?' backward-delete-char
 bindkey "^[[3~" delete-char
 bindkey "^[3;5~" delete-char
 bindkey "\e[3~" delete-char
-

@@ -55,6 +55,9 @@ export JAVA_OPTS="-XX:ReservedCodeCacheSize=128m -XX:+CMSClassUnloadingEnabled -
 # set 2 monitors
 xrandr --output VBOX1 --right-of VBOX0
 
+# add proper ssh key to ssh
+ssh-add ~/.ssh/id_rsa_netguru 2> /dev/null
+
 # RVM setup
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"

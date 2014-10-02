@@ -2,6 +2,9 @@
 
 # Reload these aliases
 alias ra='for f in ~/.bash/*; do . $f; done'
+alias srails='bin/rails'
+alias srake='bin/rake'
+alias srspec='bin/rspec'
 
 # Code related aliases
 alias gdb="gdb --quiet"
