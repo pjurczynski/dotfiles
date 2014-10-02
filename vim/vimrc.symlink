@@ -11,9 +11,8 @@
 " VUNDLE
 "----------------------------------------------------------
 
-
-set nocompatible                  " Must come first because it changes other options.
-filetype off                      " required by Vundle
+set nocompatible   " Must come first because it changes other options.
+filetype off       " required by Vundle
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -29,14 +28,8 @@ Plugin 'gmarik/Vundle.vim'
 " Integration with tmux
 Plugin 'ervandew/screen'
 
-" move between vim and tmux
-Plugin 'christoomey/vim-tmux-navigator'
-
 " Base 16 coloscheme
 Plugin 'chriskempson/base16-vim'
-
-" A nice color scheme
-Plugin 'Solarized'
 
 " javascript indentation in vim sucks
 Plugin 'Better-Javascript-Indentation'
@@ -65,12 +58,6 @@ Plugin 'scrooloose/syntastic'
 " vim-endwise - wisely add 'end' in ruby
 Plugin 'endwise.vim'
 
-" vim-fugitive - vim-git integration
-Plugin 'tpope/vim-fugitive'
-
-" vim-bundler to include gems from Gemfile.lock in ctags
-Plugin 'tpope/vim-bundler'
-
 " vim-markdown - syntax highlighting for markdown
 Plugin 'Markdown'
 
@@ -93,7 +80,7 @@ Plugin 'ruby.vim'
 Plugin 'ecomba/vim-ruby-refactoring'
 
 " cuztomizable tab completion, continued is the newer version
-Plugin 'vim-scripts/SuperTab--Van-Dewoestine'
+Plugin 'ervandew/supertab'
 
 " vim-surround - surrounding text with braces, quotes, html tags...
 Plugin 'surround.vim'
@@ -103,7 +90,6 @@ Plugin 'MarcWeber/vim-addon-mw-utils.git'
 Plugin 'tomtom/tlib_vim.git'
 Plugin 'garbas/vim-snipmate.git'
 Plugin 'honza/vim-snippets.git'
-Plugin 'scrooloose/snipmate-snippets.git'
 
 " vim-textobj - dependency of rubyblock
 Plugin 'textobj-user'
@@ -114,7 +100,7 @@ Plugin 'textobj-rubyblock'
 " Slim templates
 Plugin 'slim-template/vim-slim.git'
 
-" rainbow parentheses, mostly for clojure
+" nerdtree
 Plugin 'scrooloose/nerdtree'
 
 " rainbow parentheses, mostly for clojure
@@ -127,6 +113,13 @@ call vundle#end()
 filetype plugin indent on
 
 "----------------------------------------------------------
+
+" nerd commenter settings
+" invert comment
+nmap \\ ,ci
+
+" rake mappings
+nmap ,gr :Rake routes<cr>
 
 " others settings
 runtime macros/matchit.vim        " Load the matchit plugin.
@@ -223,19 +216,14 @@ autocmd BufNewFile,BufReadPost *.hamlbars set filetype=haml
 autocmd FileType c,cpp,java,php,javascript,html,ruby autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
 " Easy window navigation
-map <C-h> <C-w>h:wa<cr>
-map <C-j> <C-w>j:wa<cr>
-map <C-k> <C-w>k:wa<cr>
-map <C-l> <C-w>l:wa<cr>
+map <C-h> <C-w>h<cr>
+map <C-j> <C-w>j<cr>
+map <C-k> <C-w>k<cr>
+map <C-l> <C-w>l<cr>
 
 " jj and hh to go to normal mode
 imap jj <esc>
 imap hh <esc>
-
-" Snipmate
-imap <C-j> <Plug>snipMateNextOrTrigger
-smap <C-j> <Plug>snipMateNextOrTrigger
-let g:SuperTabMappingForward = '<c-space>'
 
 " CtrlP
 let g:ctrlp_map = '<c-t>'
@@ -278,7 +266,8 @@ nmap <silent> <leader>gs :Git stash<cr>
 nmap <silent> <leader>gsp :Git stash pop<cr>
 
 " rainbow parentheses always on
-au VimEnter * RainbowParenthesesToggle
+syntax enable                     " Turn on syntax highlighting.
+au VimEnter * RainbowParenthesesActivate
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
@@ -299,10 +288,10 @@ let g:ScreenShellInitialFocus = 'shell'
 let g:ScreenShellQuitOnVimExit = 0
 
 "command! -nargs=? -complete=shellcmd W :w | :call ScreenShellSend("load '".@%."';")
-map <Leader>r :w<CR> :call ScreenShellSend("rspec ".@% . ':' .  line('.'))<CR>
-map <Leader>e :w<CR> :call ScreenShellSend("cucumber --format=pretty ".@% .  ':' . line('.'))<CR>
-map <Leader>w :w<CR> :call ScreenShellSend("break ".@% . ':' .  line('.'))<CR>
-map <Leader>m :w<CR> :call ScreenShellSend("\e[A")<CR>
+map <Leader>sr :w<CR> :call ScreenShellSend("bin/rspec ".@% . ':' .  line('.'))<CR>
+map <Leader>se :w<CR> :call ScreenShellSend("cucumber --format=pretty ".@% .  ':' . line('.'))<CR>
+map <Leader>sw :w<CR> :call ScreenShellSend("break ".@% . ':' .  line('.'))<CR>
+map <Leader>sm :w<CR> :call ScreenShellSend("\e[A")<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RENAME CURRENT FILE
@@ -382,5 +371,3 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
-
-syntax enable                     " Turn on syntax highlighting.
