@@ -226,10 +226,10 @@ autocmd BufNewFile,BufReadPost Bowerfile set filetype=ruby
 autocmd FileType c,cpp,java,php,javascript,html,ruby autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
 " Easy window navigation
-map <C-h> <C-w>h<cr>
-map <C-j> <C-w>j<cr>
-map <C-k> <C-w>k<cr>
-map <C-l> <C-w>l<cr>
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 " jj and hh to go to normal mode
 imap jj <esc>
