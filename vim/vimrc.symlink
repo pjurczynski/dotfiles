@@ -1,9 +1,8 @@
 "==========================================================
 "
-" Psyho's .vimrc
+" Pjurczynski's .vimrc
 "
-" heavily inspired by Peepcode screencast, Sickill 
-" and Derek Wyatt
+" heavily inspired by Psycho and Derek Wyatt
 "
 "==========================================================
 
@@ -22,71 +21,68 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 "----------------------------------------------------------
-" PLUGINS
+" VUNDLES
 "----------------------------------------------------------
 
-" Integration with tmux
-Plugin 'ervandew/screen'
-"
-" Integration with github
-Plugin 'tpope/vim-fugitive'
+" ack vim
+Plugin 'mileszs/ack.vim'
+
+" Integration with Tmux
+Plugin 'jgdavey/tslime.vim'
 
 " Base 16 coloscheme
 Plugin 'chriskempson/base16-vim'
 
-" javascript indentation in vim sucks
-Plugin 'Better-Javascript-Indentation'
-
-" CSS
-Plugin 'JulesWang/css.vim'
-
 " Fuzzy file searching
 Plugin 'kien/ctrlp.vim'
 
+" surround - surrounding text with braces, quotes, html tags...
+Plugin 'surround.vim'
+
 " NerdCommenter - comment blocks of code
-Plugin 'The-NERD-Commenter'
-
-" Cofeescript support
-Plugin 'vim-coffee-script'
-
-" cucumber support
-Plugin 'tpope/vim-cucumber'
-
-" greplace.vim - plugin that allows search and replace across all of the project files
-Plugin 'greplace.vim'
+Plugin 'scrooloose/nerdcommenter'
 
 " syntastic - plugin for displaying syntax errors
 Plugin 'scrooloose/syntastic'
 
-" vim-endwise - wisely add 'end' in ruby
-Plugin 'endwise.vim'
+" nerdtree
+Plugin 'scrooloose/nerdtree'
 
-" vim-markdown - syntax highlighting for markdown
-Plugin 'Markdown'
-
-" vim-matchit - better pair matching for the % command
-Plugin 'matchit.zip'
-
-" vim-rake - :Rake, :A, :R like in rails.vim, but without rails
+" rake - :Rake, :A, :R like in rails.vim, but without rails
 Plugin 'tpope/vim-rake'
 
-" vim-rails - awesome vim-rails integration
+" rails - awesome vim-rails integration
 Plugin 'tpope/vim-rails'
 
-" vim-repeat - repeat stuff done in vim-surround
+" repeat - repeat stuff done in vim-surround
 Plugin 'tpope/vim-repeat'
 
-" vim-ruby - ruby integration
+" Integration with github
+Plugin 'tpope/vim-fugitive'
+
+" Cofeescript support
+Plugin 'vim-coffee-script'
+
+" javascript indentation
+Plugin 'Better-Javascript-Indentation'
+
+" rainbow parentheses, mostly for clojure
+Plugin 'kien/rainbow_parentheses.vim'
+
+" ruby - ruby integration
 Plugin 'ruby.vim'
 
-" vim-ruby-refactoring - automatic refactorings for ruby
-Plugin 'ecomba/vim-ruby-refactoring'
+" endwise - wisely add 'end' in ruby
+Plugin 'endwise.vim'
+
+" markdown - syntax highlighting for markdown
+Plugin 'Markdown'
+
+" matchit - better pair matching for the % command
+Plugin 'matchit.zip'
 
 " cuztomizable tab completion, continued is the newer version
 Plugin 'ervandew/supertab'
-
-" vim-surround - surrounding text with braces, quotes, html tags...
-Plugin 'surround.vim'
 
 " Snipmate - the new version
 Plugin 'MarcWeber/vim-addon-mw-utils.git'
@@ -94,276 +90,74 @@ Plugin 'tomtom/tlib_vim.git'
 Plugin 'garbas/vim-snipmate.git'
 Plugin 'honza/vim-snippets.git'
 
-" vim-textobj - dependency of rubyblock
-Plugin 'textobj-user'
-
-" vim-textobj-rubyblock - allow selecting blocks in ruby as text objects
+" textobj-rubyblock - allow selecting blocks in ruby as text objects
 Plugin 'textobj-rubyblock'
+Plugin 'textobj-user' " textobj - dependency of rubyblock
 
 " Slim templates
 Plugin 'slim-template/vim-slim.git'
 
-" nerdtree
-Plugin 'scrooloose/nerdtree'
-
-" rainbow parentheses, mostly for clojure
-Plugin 'kien/rainbow_parentheses.vim'
-
 " vim less coloring
 Plugin 'groenewege/vim-less'
 
-" ack vim for silver searcher
-Plugin 'mileszs/ack.vim'
+" CSS
+Plugin 'JulesWang/css.vim'
 
 call vundle#end()
 filetype plugin indent on
 
 "----------------------------------------------------------
 
-" nerd commenter settings
-" invert comment
-nmap \\ ,ci
-
-" rake mappings
-nmap ,gr :Rake routes<cr>
-
 " others settings
 runtime macros/matchit.vim        " Load the matchit plugin.
 
 set encoding=utf-8                " Default encoding
-
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
-
 set backspace=indent,eol,start    " Intuitive backspacing.
-
 set hidden                        " Handle multiple buffers better.
-
 set wildmenu                      " Enhanced command line completion.
 set wildmode=list:longest         " Complete files like a shell.
-
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains a capital letter.
-
 set ruler                         " Show cursor position.
 set cursorline                    " Highlight the current line
-
 set history=1000                  " remember more commands and search history
 set undolevels=1000               " use many muchos levels of undo
-
 set virtualedit=block             " allow the cursor to go into invalid places only in visual block mode
-
-" Display tabs and trailing spaces
-set list
+set list                          " Display tabs and trailing spaces
 set listchars=tab:»\ ,trail:·,nbsp:·
-
 set hlsearch                      " Highlight matches.
-
 set wrap                          " Turn on line wrapping.
 set scrolloff=3                   " Show 3 lines of context around the cursor.
-
 set title                         " Set the terminal's title
-
 set visualbell                    " No beeping.
-
 set splitbelow splitright         " Splitting behavior
-
 set nobackup                      " Don't make a backup before overwriting a file.
 set nowritebackup                 " And again.
 set directory=/tmp                " Keep swap files in one location
-
 set tabstop=2                     " Global tab width.
 set shiftwidth=2                  " And again, related.
 set expandtab                     " Use spaces instead of tabs
 set shiftround                    " use multiple of shiftwidth when indenting with '<' and '>'
 set laststatus=2                  " Show the status line all the time
-
 set confirm                       " confirm on quit, etc.
 set autoread                      " automatically read changes from disk
-
 set diffopt+=iwhite               " ignore whitespace in vimdiff
-
-
-" Folding settings
 set foldmethod=indent             " indent based on syntax
 set foldnestmax=3                 " deepest fold is 3 levels
 set foldlevel=3
 set nofoldenable                  " don't fold by default
-
 set matchpairs+=<:>               " add < and > to the chars that can be navigated with %
-
 set spelllang=en_us               " default spell check language
-
-set shell=/bin/zsh
-
-" Useful status information at bottom of screen
+set shell=/bin/zsh                " default shell is zsh
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
-" change the mapleader from \ to ,
-let mapleader=","
+let mapleader="," " change the mapleader from \ to ,
 
-" ex path extender
-cmap %% <c-r>=expand('%:h')<cr>/
-
-" clear highlight
-nnoremap <cr> :nohlsearch<cr>
-
-" j and k will navigate correctly in the wrapped lines
-nnoremap j gj
-nnoremap k gk
-
-" map .md files fo markdown
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-
-" Hamlbars
-autocmd BufNewFile,BufReadPost *.hamlbars set filetype=haml
-autocmd BufNewFile,BufReadPost *.hamlc set filetype=haml
-
-" Bowerfile
-autocmd BufNewFile,BufReadPost Bowerfile set filetype=ruby
-
-" automatically strip trailing whitespace for some file types
-autocmd FileType c,cpp,java,php,javascript,html,ruby autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
-
-" Easy window navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-
-" jj and hh to go to normal mode
-imap jj <esc>
-imap hh <esc>
-
-" CtrlP
-let g:ctrlp_map = '<c-t>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_custom_ignore = {
-  \ 'dir': 'node_modules'
-  \ }
-
-" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_enable_signs=1
-let g:syntastic_disabled_filetypes = ['eruby']
-
-" Emmet
-let g:user_emmet_leader_key='<C-E>'
-
-" spell-checking related shortcuts
-nmap <silent> <leader>lp :set spelllang=pl_pl<CR>
-nmap <silent> <leader>le :set spelllang=en_us<CR>
-
-" ignore gems bundled in the project directory
-set wildignore+=vendor/gems,vendor/bundle
-
-" ignore target directory in clojure projects
-set wildignore+=target
-
-" ignore node modules directory
-set wildignore+=/node_modules/*
-
-" ignore _deploy and output in nanoc sites
-set wildignore+=_deploy,output
-
-" stuff to ignore when tab completing
-set wildignore+=*.o,*.obj,*~,*.png,*.gif,*.jpg,*.jpeg,*.zip,*.jar,*.pyc
-set wildignore+=*.gem,*/coverage/*,*/log/*,tags,*.rbc,*.ttf,*.eot
-set wildignore+=*/_site/*,*/tmp/*,*/vendor/*,*/public/uploads/*,*/_src/*
-set wildignore+=*/.jhw-cache/*,.vagrant,*/.stuff/*,*/test/reports/*,*/*.egg-info/*
-
-" some Git mappings
-nmap <silent> <leader>gt :Gstatus<cr>
-nmap <silent> <leader>gl :Git pull --rebase<cr>
-nmap <silent> <leader>gp :Git push<cr>
-nmap <silent> <leader>gs :Git stash<cr>
-nmap <silent> <leader>gsp :Git stash pop<cr>
-
-" silver searcher
-
-" The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  let g:ackprg = 'ag --nogroup --nocolor --column'
-endif
-
-" search word under cursor with Ack
-nmap K :Ack <c-r><c-w><cr>
-
-" rainbow parentheses always on
-syntax enable                     " Turn on syntax highlighting.
-au VimEnter * RainbowParenthesesActivate
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-
-" Don't indent midje facts
-let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let', 'fact']
-
-map <leader>tsj :CommandTFlush<cr>\|:CommandT spec/javascripts<cr>
-map <leader>tj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>
-map <leader>tg :topleft 100 :split Gemfile<cr>
-map <leader>tt :CommandTFlush<cr>\|:CommandTTag<cr>
-map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
-
-" Screen settings
-let g:ScreenImpl = 'Tmux'
-let g:ScreenShellTmuxInitArgs = '-2'
-let g:ScreenShellInitialFocus = 'shell'
-let g:ScreenShellQuitOnVimExit = 0
-
-"command! -nargs=? -complete=shellcmd W :w | :call ScreenShellSend("load '".@%."';")
-map <Leader>sr :w<CR> :call ScreenShellSend("bin/rspec ".@% . ':' .  line('.'))<CR>
-map <Leader>se :w<CR> :call ScreenShellSend("cucumber --format=pretty ".@% .  ':' . line('.'))<CR>
-map <Leader>sw :w<CR> :call ScreenShellSend("break ".@% . ':' .  line('.'))<CR>
-map <Leader>sm :w<CR> :call ScreenShellSend("\e[A")<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RENAME CURRENT FILE
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! RenameFile()
-  let old_name = expand('%')
-  let new_name = input('New file name: ', expand('%'), 'file')
-  if new_name != '' && new_name != old_name
-    exec ':saveas ' . new_name
-    exec ':silent !rm ' . old_name
-    redraw!
-  endif
-endfunction
-map <leader>n :call RenameFile()<cr>
-
-" Make the 'cw' and like commands put a $ at the end instead of just deleting
-" the text and replacing it
-set cpoptions=ces$
-
-" switch between two last open files faster
-nmap <silent> <leader><leader> <c-^>
-
-" create directory for current file
-nmap <silent> <leader>d :!mkdir -p %:h<cr>:w<cr>
-
-nmap <silent> <LocalLeader>f :Ggrep <c-r><c-w> **/*rb<cr>
-nmap <silent> <LocalLeader>F :Ggrep <c-r><c-a> **/*rb<cr>
-
-"
-" Colors for console
-if !has("gui_running")
+if !has("gui_running") " Colors for console
   set t_Co=256
 endif
-
-" Scheme base Solarized
-" solarized settings
-"let base16colorspace=256
-"set background=light
-"let g:solarized_termtrans=1
-"let g:solarized_termcolors=256
-"let g:solarized_contrast="high"
-"let g:solarized_visibility="high"
-" colorscheme solarized
 
 " Scheme base 16
 set t_Co=256
@@ -371,32 +165,4 @@ let base16colorspace=256
 set background=dark
 colorscheme base16-default
 
-" don't search coverage reports and vcr cassettes
-set wildignore+=spec/reports
-set wildignore+=test/reports
-set wildignore+=spec/cassettes
-
-" Use Node.js for JavaScript interpretation
-let $JS_CMD='node'
-
-" set some different setting for the diff mode
-" if &diff
-"   colorscheme fu_patched " different scheme
-"   set nonumber " no line numbers
-" endif
-
-
-" restore last position
-set viminfo='10,\"100,:20,%,n~/.viminfo
-
-function! ResCur()
-  if line("'\"") <= line("$")
-    normal! g`"
-    return 1
-  endif
-endfunction
-
-augroup resCur
-  autocmd!
-  autocmd BufWinEnter * call ResCur()
-augroup END
+let $JS_CMD='node' " Use Node.js for JavaScript interpretation
