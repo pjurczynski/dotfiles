@@ -1,0 +1,2 @@
+map \\ ,cc
+nmap \\ ,cc
