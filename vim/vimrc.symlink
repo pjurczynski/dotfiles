@@ -112,6 +112,9 @@ Plugin 'kien/rainbow_parentheses.vim'
 " vim less coloring
 Plugin 'groenewege/vim-less'
 
+" ack vim for silver searcher
+Plugin 'mileszs/ack.vim'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -267,6 +270,19 @@ nmap <silent> <leader>gl :Git pull --rebase<cr>
 nmap <silent> <leader>gp :Git push<cr>
 nmap <silent> <leader>gs :Git stash<cr>
 nmap <silent> <leader>gsp :Git stash pop<cr>
+
+" silver searcher
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+endif
+
+" search word under cursor with Ack
+nmap K :Ack <c-r><c-w><cr>
 
 " rainbow parentheses always on
 syntax enable                     " Turn on syntax highlighting.
