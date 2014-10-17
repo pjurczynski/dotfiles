@@ -27,6 +27,9 @@ Plugin 'gmarik/Vundle.vim'
 
 " Integration with tmux
 Plugin 'ervandew/screen'
+"
+" Integration with github
+Plugin 'tpope/vim-fugitive'
 
 " Base 16 coloscheme
 Plugin 'chriskempson/base16-vim'
