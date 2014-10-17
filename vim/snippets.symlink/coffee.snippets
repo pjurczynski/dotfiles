@@ -1,0 +1,3 @@
+snippet bbview
+	class ${1:window.`substitute(substitute(Filename(), '\%(^\|_\)\(.\)', '\U\1', 'g'), '\..*$', '', '')`} extends Backbone.View
+		${0}

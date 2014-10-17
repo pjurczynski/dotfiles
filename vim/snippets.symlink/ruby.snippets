@@ -1,0 +1,6 @@
+snippet describe
+	require 'spec_helper'
+
+	describe ${1:`substitute(substitute(Filename(), '\%(^\|_\)\(.\)', '\U\1', 'g'), 'Spec', '', '')`}
+		${0}
+	end
