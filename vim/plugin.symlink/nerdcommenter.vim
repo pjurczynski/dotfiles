@@ -1,2 +1,0 @@
-map \\ ,cc
-nmap \\ ,cc
