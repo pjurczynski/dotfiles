@@ -24,6 +24,9 @@ Plugin 'gmarik/Vundle.vim'
 " VUNDLES
 "----------------------------------------------------------
 
+" toggle focus on one buffer
+Plugin 'merlinrebrovic/focus.vim'
+
 " ack vim
 Plugin 'mileszs/ack.vim'
 
@@ -166,3 +169,14 @@ set background=dark
 colorscheme base16-default
 
 let $JS_CMD='node' " Use Node.js for JavaScript interpretation
+
+" load all files from config dir
+function! SourceMyScripts()
+  let file_list = split(globpath("~/.vim/config", "*.vim"), '\n')
+
+  for file in file_list
+    execute( 'source '.file )
+  endfor
+endfunction
+
+call SourceMyScripts()

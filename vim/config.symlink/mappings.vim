@@ -1,8 +1,8 @@
 " ex path extender
-cmap %% <c-r>=expand('%:h')<cr>/
+cmap %% <c-r>=expand('%:h')<CR>/
 
 " clear highlight
-nnoremap <cr> :nohlsearch<cr>
+nnoremap <CR> :nohlsearch<CR>
 
 " switch between two last open files faster
 nmap <silent> <leader><leader> <c-^>
@@ -22,15 +22,15 @@ imap jj <esc>
 imap hh <esc>
 
 " some Git mappings
-nmap <silent> <leader>gt :Gstatus<cr>
+nmap <silent> <leader>gt :Gstatus<CR>
 
 " search under cursor
-nmap <silent> <LocalLeader>f :Ack <c-r><c-w> **/*<cr>
-nmap <silent> <LocalLeader>F :Ack <c-r><c-a> **/*<cr>
+nmap <silent> <LocalLeader>f :Ack <c-r><c-w> **/*<CR>
+nmap <silent> <LocalLeader>F :Ack <c-r><c-a> **/*<CR>
 
 " create directory for current file and save the file
-nmap <silent> <leader>d :!mkdir -p %:h<cr>:w<cr>
-map <leader>n :call RenameFile()<cr>
+nmap <silent> <leader>d :!mkdir -p %:h<CR>:w<CR>
+map <leader>n :call RenameFile()<CR>
 
 " Tmux integration
 map <Leader>sr :w<CR> :Tmux spring rspec <c-r>=expand("%:p")<CR>:<c-r>=line('.')<CR><CR>
@@ -39,3 +39,13 @@ map <Leader>sm :w<CR> :Tmux !!<CR>
 " spell-checking related shortcuts
 nmap <silent> <leader>lp :set spelllang=pl_pl<CR>
 nmap <silent> <leader>le :set spelllang=en_us<CR>
+
+" alternate between production code and test
+nnoremap <leader>. :call OpenTestAlternate()<CR>
+
+" NERDTree
+nmap <C-a> :NERDTreeToggle<CR>
+
+" Focus.vim - o as in "only this buffer"
+let g:focus_use_default_mapping = 0
+nmap <leader>o <Plug>FocusModeToggle
