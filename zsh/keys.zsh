@@ -21,3 +21,8 @@ bindkey '^?' backward-delete-char
 bindkey "^[[3~" delete-char
 bindkey "^[3;5~" delete-char
 bindkey "\e[3~" delete-char
+
+bindkey -v
+
+# should this be in keybindings?
+bindkey -M menuselect '^o' accept-and-infer-next-history

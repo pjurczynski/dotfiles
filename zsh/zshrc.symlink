@@ -1,62 +1,37 @@
-
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+export OMZ_ZSH_ROOT="$HOME/.oh-my-zsh"
+ZSH=$OMZ_ZSH_ROOT # for oh my zsh configuration
+export ZSH_CUSTOM="$HOME/.dotfiles/zsh/derek_wyatt"
+export ZSH_ROOT="$HOME/.dotfiles/zsh"
+
 ZSH_THEME=""
 COMPLETION_WAITING_DOTS="true"
 
-if [[ -z ${MY_SHELL_LEVEL} ]]; then
-  export MY_SHELL_LEVEL=0
-else
-  export MY_SHELL_LEVEL=$(($MY_SHELL_LEVEL+1))
-fi
-
-export SS_DISPLAY_LIMIT=25
-export ZSH_CUSTOM=~/.dotfiles/zsh/derek_wyatt
-export ZSH_ROOT=~/.dotfiles/zsh
-plugins=(git regex-dirstack vim-interaction)
-source $ZSH/oh-my-zsh.sh
+plugins=(gitfast regex-dirstack vim-interaction)
+source $OMZ_ZSH_ROOT/oh-my-zsh.sh
 source $ZSH_CUSTOM/themes/gnzh.zsh-theme
-source $ZSH_ROOT/aliases.sh
+source $ZSH_ROOT/aliases.zsh
 source $ZSH_ROOT/completion.zsh
 source $ZSH_ROOT/history.zsh
 source $ZSH_ROOT/keys.zsh
 source $ZSH_ROOT/prompt.zsh
 source $ZSH_ROOT/window.zsh
-
-bindkey -v
-bindkey -M viins 'jj' vi-cmd-mode
-setopt auto_pushd
-setopt pushd_silent
-setopt pushd_ignore_dups
-setopt ignore_eof
-setopt rm_star_silent
-unsetopt nomatch
-unsetopt correct_all
-
-if [ $(uname) = Darwin ]; then
-  export PATH=.:~/bin:~/local/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-else
-  alias open=gnome-open
-  export PATH=.:buildutil:~/bin:~/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-fi
-
-export GPGKEY=B2F6D883
-export GPG_TTY=$(tty)
-
-export SBT_OPTS=-XX:PermSize=256M
+source $ZSH_ROOT/autoloads.zsh
+source $ZSH_ROOT/personal.zsh
 
 export EDITOR=vim
+export PATH=.:buildutil:~/bin:~/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-test -f ~/.zshrc_local && . ~/.zshrc_local
+setopt ignore_eof # disable ^D for exiting from shell
+setopt rm_star_silent # no prompt for rm *
+unsetopt nomatch # don't throw errors when no match for *
+unsetopt correct_all # disable autocorrection of mistyped arguments
 
-# Auvik Settings
-export JAVA_OPTS="-XX:ReservedCodeCacheSize=128m -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=1024m -Xmx1024m -Xss2m -XX:+UseCodeCacheFlushing"
-
-# set 2 monitors
-xrandr --output VBOX1 --right-of VBOX0
-
-# add proper ssh key to ssh
-ssh-add ~/.ssh/id_rsa_netguru 2> /dev/null
+# set directory stack
+setopt auto_pushd # http://stackoverflow.com/questions/3986760/cd-1-2-3-etc-in-z-shell
+setopt pushd_silent
+setopt pushd_ignore_dups
+export SS_DISPLAY_LIMIT=25
 
 # RVM setup
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -67,9 +42,13 @@ BASE16_SCHEME="default"
 BASE16_SHELL="$HOME/.config/base16-shell/base16-$BASE16_SCHEME.dark.sh"
 [[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
 
-autoload -U zmv
-
-
 # Configure NVM
-export NVM_DIR="/home/merstzik/.nvm"
+export NVM_DIR="$HOME/merstzik/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# export shell level
+if [[ -z ${MY_SHELL_LEVEL} ]]; then
+  export MY_SHELL_LEVEL=0
+else
+  export MY_SHELL_LEVEL=$(($MY_SHELL_LEVEL+1))
+fi
