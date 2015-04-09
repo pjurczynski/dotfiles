@@ -7,7 +7,7 @@ export ZSH_ROOT="$HOME/.dotfiles/zsh"
 ZSH_THEME=""
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(gitfast regex-dirstack vim-interaction)
+plugins=(gitfast regex-dirstack vim-interaction zsh-syntax-highlighting)
 source $OMZ_ZSH_ROOT/oh-my-zsh.sh
 source $ZSH_CUSTOM/themes/gnzh.zsh-theme
 source $ZSH_ROOT/aliases.zsh
@@ -52,3 +52,6 @@ if [[ -z ${MY_SHELL_LEVEL} ]]; then
 else
   export MY_SHELL_LEVEL=$(($MY_SHELL_LEVEL+1))
 fi
+
+# added by travis gem
+[ -f /Users/piotrjurczynski/.travis/travis.sh ] && source /Users/piotrjurczynski/.travis/travis.sh

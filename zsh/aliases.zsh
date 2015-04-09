@@ -21,7 +21,6 @@ alias gaddD='git status --porcelain | grep "^.D " | cut -c4- | xargs git rm && g
 alias be='bundle exec'
 alias psgrep='ps -ef | grep ' # grep in process list
 alias kill='kill -9' # always kill to death
-alias open='gnome-open'
 
 ### Not used/assorted
 alias bc="bc -lq"
