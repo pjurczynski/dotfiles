@@ -1,0 +1,18 @@
+slate.log('no syntax errors')
+
+slate.source('~/.slate/constants.js')
+slate.source('~/.slate/bindings.js')
+slate.source('~/.slate/events/github_review.js')
+
+// init
+var init = function() {
+  slate.configAll({
+    keyboardLayout: 'colemak',
+    defaultToCurrentScreen: false,
+    ordersScreensLeftToRight: true
+  })
+
+  bindings()
+}
+
+init()
