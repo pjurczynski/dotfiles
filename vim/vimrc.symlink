@@ -33,6 +33,9 @@ Plugin 'mileszs/ack.vim'
 " Integration with Tmux
 Plugin 'jgdavey/tslime.vim'
 
+" Integration with iTerm2
+Plugin 'welaika/vim-itermux'
+
 " Base 16 coloscheme
 Plugin 'chriskempson/base16-vim'
 
@@ -41,6 +44,9 @@ Plugin 'kien/ctrlp.vim'
 
 " surround - surrounding text with braces, quotes, html tags...
 Plugin 'surround.vim'
+
+" Tabularize - align data in columns
+Plugin 'godlygeek/tabular'
 
 " NerdCommenter - comment blocks of code
 Plugin 'scrooloose/nerdcommenter'
@@ -68,6 +74,9 @@ Plugin 'vim-coffee-script'
 
 " javascript indentation
 Plugin 'Better-Javascript-Indentation'
+
+" javascript - jasmine integration
+Plugin 'thomd/vim-jasmine'
 
 " rainbow parentheses, mostly for clojure
 Plugin 'kien/rainbow_parentheses.vim'
@@ -105,6 +114,9 @@ Plugin 'groenewege/vim-less'
 
 " CSS
 Plugin 'JulesWang/css.vim'
+
+" advanced sorter
+Plugin 'vim-scripts/AdvancedSorters'
 
 call vundle#end()
 filetype plugin indent on
@@ -155,6 +167,8 @@ set matchpairs+=<:>               " add < and > to the chars that can be navigat
 set spelllang=en_us               " default spell check language
 set shell=/bin/zsh                " default shell is zsh
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+set guioptions-=r
+set guioptions-=L
 
 let mapleader="," " change the mapleader from \ to ,
 
