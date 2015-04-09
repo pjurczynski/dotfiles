@@ -1,0 +1,8 @@
+// named constants
+NO_REPEAT = false
+REPEAT = true
+LEFT_MONITOR = 0
+RIGHT_MONITOR = (slate.screenCount() == 2) ? 1 : 0
+
+SECONDARY_MONITOR = LEFT_MONITOR
+PRIMARY_MONITOR = RIGHT_MONITOR
