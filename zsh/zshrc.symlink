@@ -7,7 +7,7 @@ export ZSH_ROOT="$HOME/.dotfiles/zsh"
 ZSH_THEME=""
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(gitfast regex-dirstack vim-interaction zsh-syntax-highlighting)
+plugins=(gitfast regex-dirstack vim-interaction zsh-syntax-highlighting osx terminalapp)
 source $OMZ_ZSH_ROOT/oh-my-zsh.sh
 source $ZSH_CUSTOM/themes/gnzh.zsh-theme
 source $ZSH_ROOT/aliases.zsh
