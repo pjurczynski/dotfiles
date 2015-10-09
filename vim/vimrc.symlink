@@ -39,6 +39,9 @@ Plugin 'welaika/vim-itermux'
 " Base 16 coloscheme
 Plugin 'chriskempson/base16-vim'
 
+" vim airline
+Plugin 'vim-airline'
+
 " Fuzzy file searching
 Plugin 'kien/ctrlp.vim'
 
@@ -62,6 +65,9 @@ Plugin 'tpope/vim-rake'
 
 " rails - awesome vim-rails integration
 Plugin 'tpope/vim-rails'
+"
+" rails - awesome vim-rails integration
+Plugin 'tpope/vim-bundler'
 
 " repeat - repeat stuff done in vim-surround
 Plugin 'tpope/vim-repeat'
@@ -69,8 +75,14 @@ Plugin 'tpope/vim-repeat'
 " Integration with github
 Plugin 'tpope/vim-fugitive'
 
+" add quick mappings for quickfix window
+Plugin 'tpope/vim-unimpaired'
+
 " Cofeescript support
 Plugin 'vim-coffee-script'
+
+" Emblem support for ember
+Plugin 'heartsentwined/vim-emblem'
 
 " javascript indentation
 Plugin 'Better-Javascript-Indentation'
@@ -88,7 +100,7 @@ Plugin 'ruby.vim'
 Plugin 'endwise.vim'
 
 " markdown - syntax highlighting for markdown
-Plugin 'Markdown'
+Plugin 'plasticboy/vim-markdown'
 
 " matchit - better pair matching for the % command
 Plugin 'matchit.zip'
