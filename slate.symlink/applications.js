@@ -3,6 +3,7 @@ var applications = function() {
     chrome: 'Google Chrome',
     slack: 'Slack',
     clementine: 'Clementine',
+    spotify: 'Spotify',
     iterm: 'iTerm',
     vim: 'MacVim',
     github: 'GitHub'
