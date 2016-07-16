@@ -24,23 +24,28 @@ Plugin 'gmarik/Vundle.vim'
 " VUNDLES
 "----------------------------------------------------------
 
+" plugin for navigating vim in tmux
+" Plugin 'christoomey/vim-tmux-navigator'
+" Plugin 'zephod/vim-iterm2-navigator'
+" Plugin 'christoomey/vim-tmux-runner'
+
 " toggle focus on one buffer
 Plugin 'merlinrebrovic/focus.vim'
 
 " ack vim
 Plugin 'mileszs/ack.vim'
 
-" Integration with Tmux
-Plugin 'jgdavey/tslime.vim'
-
-" Integration with iTerm2
-Plugin 'welaika/vim-itermux'
+" run specs from vim
+Plugin 'janko-m/vim-test'
+Plugin 'benekastah/neomake'
+Plugin 'tpope/vim-dispatch'
+Plugin 'radenling/vim-dispatch-neovim'
 
 " Base 16 coloscheme
 Plugin 'chriskempson/base16-vim'
 
 " vim airline
-Plugin 'vim-airline'
+" Plugin 'vim-airline'
 
 " Fuzzy file searching
 Plugin 'kien/ctrlp.vim'
@@ -51,17 +56,17 @@ Plugin 'surround.vim'
 " Tabularize - align data in columns
 Plugin 'godlygeek/tabular'
 
-" NerdCommenter - comment blocks of code
-Plugin 'scrooloose/nerdcommenter'
+" better comments
+" Plugin 'tpope/vim-commentary'
 
 " syntastic - plugin for displaying syntax errors
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
 
 " nerdtree
-Plugin 'scrooloose/nerdtree'
+" Plugin 'scrooloose/nerdtree'
 
 " rake - :Rake, :A, :R like in rails.vim, but without rails
-Plugin 'tpope/vim-rake'
+" Plugin 'tpope/vim-rake'
 
 " rails - awesome vim-rails integration
 Plugin 'tpope/vim-rails'
@@ -74,6 +79,7 @@ Plugin 'tpope/vim-repeat'
 
 " Integration with github
 Plugin 'tpope/vim-fugitive'
+" Plugin 'christoomey/vim-conflicted'
 
 " add quick mappings for quickfix window
 Plugin 'tpope/vim-unimpaired'
@@ -82,7 +88,7 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'vim-coffee-script'
 
 " Emblem support for ember
-Plugin 'heartsentwined/vim-emblem'
+" Plugin 'heartsentwined/vim-emblem'
 
 " javascript indentation
 Plugin 'Better-Javascript-Indentation'
@@ -119,16 +125,24 @@ Plugin 'textobj-rubyblock'
 Plugin 'textobj-user' " textobj - dependency of rubyblock
 
 " Slim templates
-Plugin 'slim-template/vim-slim.git'
+" Plugin 'slim-template/vim-slim.git'
 
 " vim less coloring
-Plugin 'groenewege/vim-less'
+" Plugin 'groenewege/vim-less'
+
+" handlebars
+" Plugin 'nono/vim-handlebars'
 
 " CSS
 Plugin 'JulesWang/css.vim'
 
 " advanced sorter
-Plugin 'vim-scripts/AdvancedSorters'
+" Plugin 'vim-scripts/AdvancedSorters'
+
+" https://github.com/arakashic/chromatica.nvim
+Plugin 'arakashic/chromatica.nvim'
+let g:chromatica#libclang_path='/usr/local/opt/llvm/lib'
+
 
 call vundle#end()
 filetype plugin indent on
@@ -182,11 +196,12 @@ set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLo
 set guioptions-=r
 set guioptions-=L
 
-let mapleader="," " change the mapleader from \ to ,
+let mapleader=" " " change the mapleader from \ to space
 
-if !has("gui_running") " Colors for console
-  set t_Co=256
-endif
+" disable incremental search
+set noincsearch
+
+set iskeyword+=-
 
 " Scheme base 16
 set t_Co=256
@@ -205,4 +220,5 @@ function! SourceMyScripts()
   endfor
 endfunction
 
+let test#runners = {'javascript': ['karma']}
 call SourceMyScripts()
