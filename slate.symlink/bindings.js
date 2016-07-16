@@ -27,7 +27,7 @@ var bindings = function() {
   slate.bind(altWith('c'), operations.focusCommunicator, NO_REPEAT)
   slate.bind(altWith('m'), operations.focusMusic, NO_REPEAT)
   slate.bind(altWith('t'), operations.focusTerminal, NO_REPEAT)
-  slate.bind(altWith('e'), operations.focusEditor, NO_REPEAT)
+  //slate.bind(altWith('e'), operations.focusEditor, NO_REPEAT)
   slate.bind(altWith('g'), operations.focusGithub, NO_REPEAT)
   slate.bind(altWith('h'), operations.focusLeft, NO_REPEAT)
   slate.bind(altWith('l'), operations.focusRight, NO_REPEAT)

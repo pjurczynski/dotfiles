@@ -21,6 +21,7 @@ bindkey '^?' backward-delete-char
 bindkey "^[[3~" delete-char
 bindkey "^[3;5~" delete-char
 bindkey "\e[3~" delete-char
+bindkey '^R' history-incremental-search-backward
 
 bindkey -v
 

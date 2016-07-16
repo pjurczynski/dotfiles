@@ -5,3 +5,4 @@ ignore_me/
 *ignore_me
 npm-debug.log
 /tags
+sidekiq.pid

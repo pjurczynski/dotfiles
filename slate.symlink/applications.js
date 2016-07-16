@@ -5,7 +5,7 @@ var applications = function() {
     clementine: 'Clementine',
     spotify: 'Spotify',
     iterm: 'iTerm',
-    vim: 'MacVim',
+    vim: 'nvim',
     github: 'GitHub'
   }
 

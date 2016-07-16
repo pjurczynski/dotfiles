@@ -19,7 +19,7 @@ source $ZSH_ROOT/window.zsh
 source $ZSH_ROOT/autoloads.zsh
 source $ZSH_ROOT/personal.zsh
 
-export EDITOR=vim
+export EDITOR=nvim
 export PATH=.:buildutil:~/bin:~/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 setopt ignore_eof # disable ^D for exiting from shell
@@ -55,3 +55,5 @@ fi
 
 # added by travis gem
 [ -f /Users/piotrjurczynski/.travis/travis.sh ] && source /Users/piotrjurczynski/.travis/travis.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
