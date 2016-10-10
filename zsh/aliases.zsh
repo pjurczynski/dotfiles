@@ -30,4 +30,4 @@ alias gpr='open "https://github.com/netguru/`basename $(git rev-parse --show-top
 alias bc="bc -lq"
 alias gctags='ctags -R --languages=ruby --exclude=.git --exclude=log --exclude=tmp . $(bundle list --paths)'
 alias tar="tar -zcvf"
-alias untar="tar -zxvf"
+alias untar="\tar -zxvf"
