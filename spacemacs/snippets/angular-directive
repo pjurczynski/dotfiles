@@ -1,0 +1,28 @@
+# -*- mode: snippet -*-
+#name : angular-directive
+#key : directive
+#contributor : szujek
+# --
+(function() {
+'use strict';
+
+angular.module().directive('$1', [
+  '_',
+  function(
+    _
+  ) {
+    return {
+      restrict: 'E',
+      replace: false,
+      templateUrl: '$2',
+      controller: '$3',
+      controllerAs: '$4',
+      bindToController: true,
+      link: function(scope, element, attrs) {
+        $0
+      }
+    };
+  },
+]);
+
+})();

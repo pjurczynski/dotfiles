@@ -24,7 +24,7 @@ alias gaddD='git status --porcelain | grep "^.D " | cut -c4- | xargs git rm && g
 alias be='bundle exec'
 alias psgrep='ps -ef | grep ' # grep in process list
 alias kill='kill -9' # always kill to death
-alias gpr='open "https://github.com/netguru/`basename $(git rev-parse --show-toplevel)`/compare/master...`git rev-parse --abbrev-ref HEAD`?expand=1"'
+alias gpr='google-chrome "https://github.com/PulsateHQ/`basename $(git rev-parse --show-toplevel)`/compare/development...`git rev-parse --abbrev-ref HEAD`?expand=1"'
 
 ### Not used/assorted
 alias bc="bc -lq"

@@ -1,5 +1,5 @@
 # base config
-set $mod Mod1
+set $mod mod4
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 floating_modifier $mod
 
@@ -21,16 +21,18 @@ set $git [class="(?i)gitg"]
 set $clipboard [class="(?i)xclipboard"]
 set $hipchat [class="(?i)hipchat"]
 set $gvim [class="(?i)gvim"]
+set $emacs [class="(?i)emacs"]
 set $terminal [class="(?i)terminal"]
 set $desktop [class="(?i)desktop"]
 
-set $terminal_cmd i3-sensible-terminal -e tmux -2
+set $terminal_cmd gnome-terminal -e tmux -2
 
 # focus apps
 bindsym $mod+g $gvim focus
 bindsym $mod+t $terminal focus
 bindsym $mod+b $browser focus
 bindsym $mod+c $hipchat focus
+bindsym $mod+e $emacs
 
 # assign
 assign $browser 1
@@ -38,6 +40,7 @@ assign $hipchat 2
 assign $git 7
 assign $clipboard 7
 assign $desktop 0
+assign $emacs 9
 
 # assign workspaces to monitors
 workspace 1 output VBOX0

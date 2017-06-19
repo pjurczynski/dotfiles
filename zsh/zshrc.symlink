@@ -3,6 +3,7 @@ export OMZ_ZSH_ROOT="$HOME/.oh-my-zsh"
 ZSH=$OMZ_ZSH_ROOT # for oh my zsh configuration
 export ZSH_CUSTOM="$HOME/.dotfiles/zsh/derek_wyatt"
 export ZSH_ROOT="$HOME/.dotfiles/zsh"
+export NO_AT_BRIDGE=1 # fix for webkit issue (http://elementaryos.stackexchange.com/questions/3819/couldnt-connect-to-accessibility-bus-failed-to-connect-to-socket)
 
 ZSH_THEME=""
 COMPLETION_WAITING_DOTS="true"
@@ -20,7 +21,6 @@ source $ZSH_ROOT/autoloads.zsh
 source $ZSH_ROOT/personal.zsh
 
 export EDITOR=nvim
-export PATH=.:buildutil:~/bin:~/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 setopt ignore_eof # disable ^D for exiting from shell
 setopt rm_star_silent # no prompt for rm *
@@ -34,13 +34,14 @@ setopt pushd_ignore_dups
 export SS_DISPLAY_LIMIT=25
 
 # RVM setup
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" reload
 
 # Base16 Shell
 BASE16_SCHEME="default"
-BASE16_SHELL="$HOME/.config/base16-shell/base16-$BASE16_SCHEME.dark.sh"
-[[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+base16_default-dark
 
 # Configure NVM
 export NVM_DIR="$HOME/merstzik/.nvm"
@@ -57,3 +58,7 @@ fi
 [ -f /Users/piotrjurczynski/.travis/travis.sh ] && source /Users/piotrjurczynski/.travis/travis.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export TERMINAL=urxvt
+export DOCKER_MACHINE_IP=http://localhost
+alias android-connect="mtpfs -o allow_other /media/androiddevice"
+alias android-disconnect="fusermount -u /media/androiddevice"

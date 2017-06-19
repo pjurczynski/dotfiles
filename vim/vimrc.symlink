@@ -10,6 +10,7 @@
 " VUNDLE
 "----------------------------------------------------------
 
+let mapleader=" " " change the mapleader from \ to space
 set nocompatible   " Must come first because it changes other options.
 filetype off       " required by Vundle
 
@@ -90,11 +91,11 @@ Plugin 'vim-coffee-script'
 " Emblem support for ember
 " Plugin 'heartsentwined/vim-emblem'
 
-" javascript indentation
-Plugin 'Better-Javascript-Indentation'
-
 " javascript - jasmine integration
-Plugin 'thomd/vim-jasmine'
+Plugin 'glanotte/vim-jasmine'
+Plugin 'jelera/vim-javascript-syntax'
+
+Plugin 'lfilho/cosco.vim'
 
 " rainbow parentheses, mostly for clojure
 Plugin 'kien/rainbow_parentheses.vim'
@@ -141,6 +142,7 @@ Plugin 'JulesWang/css.vim'
 
 " https://github.com/arakashic/chromatica.nvim
 Plugin 'arakashic/chromatica.nvim'
+Plugin 'burnettk/vim-angular'
 let g:chromatica#libclang_path='/usr/local/opt/llvm/lib'
 
 
@@ -186,7 +188,7 @@ set confirm                       " confirm on quit, etc.
 set autoread                      " automatically read changes from disk
 set diffopt+=iwhite               " ignore whitespace in vimdiff
 set foldmethod=indent             " indent based on syntax
-set foldnestmax=3                 " deepest fold is 3 levels
+set foldnestmax=20                 " deepest fold is 3 levels
 set foldlevel=3
 set nofoldenable                  " don't fold by default
 set matchpairs+=<:>               " add < and > to the chars that can be navigated with %
@@ -195,6 +197,8 @@ set shell=/bin/zsh                " default shell is zsh
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 set guioptions-=r
 set guioptions-=L
+set foldopen=insert,jump,mark,percent,quickfix,search,tag,undo
+
 
 let mapleader=" " " change the mapleader from \ to space
 
@@ -205,8 +209,8 @@ set iskeyword+=-
 
 " Scheme base 16
 set t_Co=256
-let base16colorspace=256
 set background=dark
+let base16colorspace=256
 colorscheme base16-default-dark
 
 let $JS_CMD='node' " Use Node.js for JavaScript interpretation
