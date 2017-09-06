@@ -62,3 +62,4 @@ export TERMINAL=urxvt
 export DOCKER_MACHINE_IP=http://localhost
 alias android-connect="mtpfs -o allow_other /media/androiddevice"
 alias android-disconnect="fusermount -u /media/androiddevice"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
