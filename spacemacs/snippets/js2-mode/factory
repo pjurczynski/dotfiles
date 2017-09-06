@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# name: factory
+# key: factory
+# --
+
+(function(angular) {
+  'use strict';
+
+  angular.module('pulsateApp.rappid').factory('$1', $1Factory);
+
+  $1Factory.$inject = [
+  ];
+
+  function $1Factory(
+  ) {
+    return $1;
+
+    function $1() {
+      $0
+    }
+  }
+
+})(window.angular);

@@ -1,0 +1,26 @@
+# key: directive
+# name: angular default directive template
+# --
+(function(angular) {
+  'use strict';
+
+  angular.module('pulsateApp.rappid').directive('$1', $1Directive);
+
+  $1Directive.$inject = [
+  ];
+
+  function $1Directive(
+  ) {
+    return {
+      restrict: 'E',
+      replace: false,
+      templateUrl: '/assets/angular/apps/rappid/$2',
+      link: link,
+    };
+
+    function link() {
+    $0
+    }
+  }
+
+})(window.angular);

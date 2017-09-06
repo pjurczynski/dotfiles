@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: mapget
+# key: mapget
+# --
+map-get(\$$1, $2);$0
