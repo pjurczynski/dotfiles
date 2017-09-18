@@ -33,10 +33,6 @@ setopt pushd_silent
 setopt pushd_ignore_dups
 export SS_DISPLAY_LIMIT=25
 
-# RVM setup
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" reload
-
 # Base16 Shell
 BASE16_SCHEME="default"
 BASE16_SHELL=$HOME/.config/base16-shell/

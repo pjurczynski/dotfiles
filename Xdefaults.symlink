@@ -1,0 +1,17 @@
+urxvt.iso14755: false
+urxvt.iso14755_52: false
+urxvt.perl-ext-common: default,tabbed,matcher,resize-font,-tabbed
+urxvt.font: xft:Neep:pixelsize=14
+!URxvt*font: neep-alt-iso8859-1-10
+!URxvt*boldFont: neep-alt-iso8859-1-bold-10
+
+!------------------------------------------------------------------------------
+! c o l o r -  s e t t i n g s
+
+*background: #222222
+*foreground: #777777
+
+!------------------------------------------------------------------------------
+! u r x v t
+
+URxvt*scrollBar:        false

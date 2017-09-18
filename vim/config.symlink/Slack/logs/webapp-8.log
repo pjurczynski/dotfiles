@@ -1,0 +1,18 @@
+2016-11-04T21:24:54.858Z - info: UPDATE_SEARCH_BOX_SIZE : {
+  "newSize": {
+    "id": "search",
+    "width": 370,
+    "height": 40,
+    "top": 642.0625,
+    "left": 1409
+  }
+}
+2016-11-04T21:25:00.108Z - info: Unloading spellchecker
+2016-11-05T14:54:41.099Z - info: Window is unloading, winssb is no longer accessible
+2016-11-05T14:54:45.048Z - info: Unloading spellchecker
+2016-11-05T14:54:45.052Z - info: Unloading spellchecker
+2016-11-05T14:54:49.923Z - info: Unloading spellchecker
+2016-11-05T20:43:27.069Z - info: Unloading spellchecker
+2016-11-06T12:33:35.077Z - info: Unloading spellchecker
+2016-11-06T13:31:18.622Z - info: Unloading spellchecker
+2016-11-06T13:36:59.055Z - info: Unloading spellchecker

@@ -1,0 +1,226 @@
+"==========================================================
+"
+" Pjurczynski's .vimrc
+"
+" heavily inspired by Psycho and Derek Wyatt
+"
+"==========================================================
+
+"----------------------------------------------------------
+" VUNDLE
+"----------------------------------------------------------
+
+set nocompatible   " Must come first because it changes other options.
+filetype off       " required by Vundle
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle
+Plugin 'gmarik/Vundle.vim'
+
+"----------------------------------------------------------
+" VUNDLES
+"----------------------------------------------------------
+
+" plugin for navigating vim in tmux
+" Plugin 'christoomey/vim-tmux-navigator'
+" Plugin 'zephod/vim-iterm2-navigator'
+" Plugin 'christoomey/vim-tmux-runner'
+
+" toggle focus on one buffer
+Plugin 'merlinrebrovic/focus.vim'
+
+" ack vim
+Plugin 'mileszs/ack.vim'
+
+" run specs from vim
+Plugin 'janko-m/vim-test'
+Plugin 'benekastah/neomake'
+Plugin 'tpope/vim-dispatch'
+Plugin 'radenling/vim-dispatch-neovim'
+
+" Base 16 coloscheme
+Plugin 'chriskempson/base16-vim'
+
+" vim airline
+" Plugin 'vim-airline'
+
+" Fuzzy file searching
+Plugin 'kien/ctrlp.vim'
+
+" surround - surrounding text with braces, quotes, html tags...
+Plugin 'surround.vim'
+
+" Tabularize - align data in columns
+Plugin 'godlygeek/tabular'
+
+" better comments
+" Plugin 'tpope/vim-commentary'
+
+" syntastic - plugin for displaying syntax errors
+" Plugin 'scrooloose/syntastic'
+
+" nerdtree
+Plugin 'scrooloose/nerdtree'
+
+" rake - :Rake, :A, :R like in rails.vim, but without rails
+" Plugin 'tpope/vim-rake'
+
+" rails - awesome vim-rails integration
+Plugin 'tpope/vim-rails'
+"
+" rails - awesome vim-rails integration
+Plugin 'tpope/vim-bundler'
+
+" repeat - repeat stuff done in vim-surround
+Plugin 'tpope/vim-repeat'
+
+" Integration with github
+Plugin 'tpope/vim-fugitive'
+" Plugin 'christoomey/vim-conflicted'
+
+" add quick mappings for quickfix window
+Plugin 'tpope/vim-unimpaired'
+
+" Cofeescript support
+Plugin 'vim-coffee-script'
+
+" Emblem support for ember
+" Plugin 'heartsentwined/vim-emblem'
+
+" javascript indentation
+Plugin 'Better-Javascript-Indentation'
+
+" javascript - jasmine integration
+Plugin 'thomd/vim-jasmine'
+
+" rainbow parentheses, mostly for clojure
+Plugin 'kien/rainbow_parentheses.vim'
+
+" ruby - ruby integration
+Plugin 'ruby.vim'
+
+" endwise - wisely add 'end' in ruby
+Plugin 'endwise.vim'
+
+" markdown - syntax highlighting for markdown
+Plugin 'plasticboy/vim-markdown'
+
+" matchit - better pair matching for the % command
+Plugin 'matchit.zip'
+
+" cuztomizable tab completion, continued is the newer version
+Plugin 'ervandew/supertab'
+
+" Snipmate - the new version
+Plugin 'MarcWeber/vim-addon-mw-utils.git'
+Plugin 'tomtom/tlib_vim.git'
+Plugin 'garbas/vim-snipmate.git'
+Plugin 'honza/vim-snippets.git'
+
+" textobj-rubyblock - allow selecting blocks in ruby as text objects
+Plugin 'textobj-rubyblock'
+Plugin 'textobj-user' " textobj - dependency of rubyblock
+
+" Slim templates
+" Plugin 'slim-template/vim-slim.git'
+
+" vim less coloring
+" Plugin 'groenewege/vim-less'
+
+" handlebars
+" Plugin 'nono/vim-handlebars'
+
+" CSS
+Plugin 'JulesWang/css.vim'
+
+" advanced sorter
+" Plugin 'vim-scripts/AdvancedSorters'
+
+" https://github.com/arakashic/chromatica.nvim
+Plugin 'arakashic/chromatica.nvim'
+Plugin 'burnettk/vim-angular'
+
+let g:chromatica#libclang_path='/usr/local/opt/llvm/lib'
+
+
+call vundle#end()
+filetype plugin indent on
+
+"----------------------------------------------------------
+
+" others settings
+runtime macros/matchit.vim        " Load the matchit plugin.
+
+set encoding=utf-8                " Default encoding
+set showcmd                       " Display incomplete commands.
+set showmode                      " Display the mode you're in.
+set backspace=indent,eol,start    " Intuitive backspacing.
+set hidden                        " Handle multiple buffers better.
+set wildmenu                      " Enhanced command line completion.
+set wildmode=list:longest         " Complete files like a shell.
+set ignorecase                    " Case-insensitive searching.
+set smartcase                     " But case-sensitive if expression contains a capital letter.
+set ruler                         " Show cursor position.
+set cursorline                    " Highlight the current line
+set history=1000                  " remember more commands and search history
+set undolevels=1000               " use many muchos levels of undo
+set virtualedit=block             " allow the cursor to go into invalid places only in visual block mode
+set list                          " Display tabs and trailing spaces
+set listchars=tab:»\ ,trail:·,nbsp:·
+set hlsearch                      " Highlight matches.
+set wrap                          " Turn on line wrapping.
+set scrolloff=3                   " Show 3 lines of context around the cursor.
+set title                         " Set the terminal's title
+set visualbell                    " No beeping.
+set splitbelow splitright         " Splitting behavior
+set nobackup                      " Don't make a backup before overwriting a file.
+set nowritebackup                 " And again.
+set directory=/tmp                " Keep swap files in one location
+set tabstop=2                     " Global tab width.
+set shiftwidth=2                  " And again, related.
+set expandtab                     " Use spaces instead of tabs
+set shiftround                    " use multiple of shiftwidth when indenting with '<' and '>'
+set laststatus=2                  " Show the status line all the time
+set confirm                       " confirm on quit, etc.
+set autoread                      " automatically read changes from disk
+set diffopt+=iwhite               " ignore whitespace in vimdiff
+set foldmethod=indent             " indent based on syntax
+set foldnestmax=3                 " deepest fold is 3 levels
+set foldlevel=3
+set nofoldenable                  " don't fold by default
+set matchpairs+=<:>               " add < and > to the chars that can be navigated with %
+set spelllang=en_us               " default spell check language
+set shell=/bin/zsh                " default shell is zsh
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+set guioptions-=r
+set guioptions-=L
+
+let mapleader=" " " change the mapleader from \ to space
+
+" disable incremental search
+set noincsearch
+
+set iskeyword+=-
+
+" Scheme base 16
+set t_Co=256
+let base16colorspace=256
+set background=dark
+colorscheme base16-default-dark
+
+let $JS_CMD='node' " Use Node.js for JavaScript interpretation
+
+" load all files from config dir
+function! SourceMyScripts()
+  let file_list = split(globpath("~/.vim/config", "*.vim"), '\n')
+
+  for file in file_list
+    execute( 'source '.file )
+  endfor
+endfunction
+
+let test#runners = {'javascript': ['karma']}
+call SourceMyScripts()

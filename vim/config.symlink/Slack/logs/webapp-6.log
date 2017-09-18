@@ -1,0 +1,103 @@
+2016-11-04T21:24:57.074Z - info: UPDATE_SEARCH_BOX_SIZE : {
+  "newSize": {
+    "id": "search",
+    "width": 303,
+    "height": 34,
+    "top": 13.1875,
+    "left": 1444
+  }
+}
+2016-11-04T21:24:57.679Z - info: SELECT_CHANNEL : "C0FBB2J8N"
+2016-11-04T21:25:00.516Z - info: Couldn't detect language for text of length '221': Not enough reliable text, ignoring sample
+2016-11-04T21:25:00.518Z - info: Couldn't detect language for text of length '221': Not enough reliable text, ignoring sample
+2016-11-04T21:25:00.745Z - info: UPDATE_TEAM_THEME : {
+  "theme": {
+    "column_bg": "#4D394B",
+    "menu_bg": "#3E313C",
+    "active_item": "#4C9689",
+    "active_item_text": "#FFFFFF",
+    "hover_item": "#3E313C",
+    "text_color": "#FFFFFF",
+    "active_presence": "#38978D",
+    "badge": "#EB4D5C"
+  },
+  "teamId": "T0FBB2J86"
+}
+2016-11-04T21:25:01.121Z - info: UPDATE_TEAM_ICONS : {
+  "icons": {
+    "image_34": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_34.png",
+    "image_44": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_44.png",
+    "image_68": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_68.png",
+    "image_88": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_88.png",
+    "image_102": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_132": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_230": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_original": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_original.png"
+  },
+  "teamId": "T0FBB2J86"
+}
+2016-11-05T13:51:05.409Z - info: UPDATE_TEAM_ICONS : {
+  "icons": {
+    "image_34": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_34.png",
+    "image_44": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_44.png",
+    "image_68": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_68.png",
+    "image_88": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_88.png",
+    "image_102": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_132": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_230": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_original": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_original.png"
+  },
+  "teamId": "T0FBB2J86"
+}
+2016-11-05T20:42:57.055Z - info: UPDATE_TEAM_ICONS : {
+  "icons": {
+    "image_34": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_34.png",
+    "image_44": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_44.png",
+    "image_68": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_68.png",
+    "image_88": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_88.png",
+    "image_102": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_132": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_230": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_original": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_original.png"
+  },
+  "teamId": "T0FBB2J86"
+}
+2016-11-05T21:03:29.382Z - info: UPDATE_TEAM_ICONS : {
+  "icons": {
+    "image_34": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_34.png",
+    "image_44": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_44.png",
+    "image_68": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_68.png",
+    "image_88": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_88.png",
+    "image_102": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_132": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_230": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_original": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_original.png"
+  },
+  "teamId": "T0FBB2J86"
+}
+2016-11-05T22:09:53.716Z - info: UPDATE_TEAM_ICONS : {
+  "icons": {
+    "image_34": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_34.png",
+    "image_44": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_44.png",
+    "image_68": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_68.png",
+    "image_88": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_88.png",
+    "image_102": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_132": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_230": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_original": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_original.png"
+  },
+  "teamId": "T0FBB2J86"
+}
+2016-11-06T12:26:38.596Z - info: UPDATE_TEAM_ICONS : {
+  "icons": {
+    "image_34": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_34.png",
+    "image_44": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_44.png",
+    "image_68": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_68.png",
+    "image_88": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_88.png",
+    "image_102": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_132": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_230": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_102.png",
+    "image_original": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2016-06-24/53988075904_bf5462a071aa4020e1be_original.png"
+  },
+  "teamId": "T0FBB2J86"
+}

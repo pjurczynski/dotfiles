@@ -1,2 +1,0 @@
-let test#strategy = "neovim"
-
