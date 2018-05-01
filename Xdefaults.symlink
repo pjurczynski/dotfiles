@@ -1,9 +1,10 @@
 urxvt.iso14755: false
 urxvt.iso14755_52: false
 urxvt.perl-ext-common: default,tabbed,matcher,resize-font,-tabbed
-urxvt.font: xft:Neep:pixelsize=14
-!URxvt*font: neep-alt-iso8859-1-10
-!URxvt*boldFont: neep-alt-iso8859-1-bold-10
+URxvt*loginShell: true
+URxvt*font: neep-alt-iso8859-1-14
+URxvt*boldFont: neep-alt-iso8859-1-bold-14
+urxvt*loginShell: true
 
 !------------------------------------------------------------------------------
 ! c o l o r -  s e t t i n g s

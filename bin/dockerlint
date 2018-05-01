@@ -1,0 +1,8 @@
+#!/bin/sh
+# A linter for Dockerfiles
+
+if [ "$1" = "" ] ; then
+  docker run -it --rm -v $(pwd)/Dockerfile:/Dockerfile jeromepin/whale-linter:0.0.7
+else
+  docker run -it --rm -v $1:/Dockerfile jeromepin/whale-linter:0.0.7
+fi

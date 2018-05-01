@@ -1,1 +1,0 @@
-export PATH=~/.local/bin:~/.npm-global/bin:.:buildutil:~/bin:~/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$HOME/.rvm/bin

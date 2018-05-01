@@ -1,4 +1,6 @@
 # Path to your oh-my-zsh configuration.
+source /etc/profile
+/home/szujek/.yarn/bin
 export OMZ_ZSH_ROOT="$HOME/.oh-my-zsh"
 ZSH=$OMZ_ZSH_ROOT # for oh my zsh configuration
 export ZSH_CUSTOM="$HOME/.dotfiles/zsh/derek_wyatt"
@@ -8,7 +10,7 @@ export NO_AT_BRIDGE=1 # fix for webkit issue (http://elementaryos.stackexchange.
 ZSH_THEME=""
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(gitfast regex-dirstack vim-interaction zsh-syntax-highlighting osx terminalapp)
+plugins=(gitfast regex-dirstack vim-interaction zsh-syntax-highlighting)
 source $OMZ_ZSH_ROOT/oh-my-zsh.sh
 source $ZSH_CUSTOM/themes/gnzh.zsh-theme
 source $ZSH_ROOT/aliases.zsh
@@ -18,7 +20,6 @@ source $ZSH_ROOT/keys.zsh
 source $ZSH_ROOT/prompt.zsh
 source $ZSH_ROOT/window.zsh
 source $ZSH_ROOT/autoloads.zsh
-source $ZSH_ROOT/personal.zsh
 
 export EDITOR=nvim
 
@@ -40,8 +41,9 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 base16_default-dark
 
 # Configure NVM
-export NVM_DIR="$HOME/merstzik/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+nvm use stable --silent
 
 # export shell level
 if [[ -z ${MY_SHELL_LEVEL} ]]; then
@@ -59,3 +61,7 @@ export DOCKER_MACHINE_IP=http://localhost
 alias android-connect="mtpfs -o allow_other /media/androiddevice"
 alias android-disconnect="fusermount -u /media/androiddevice"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+eval "$(fasd --init auto)"
+export PATH="$PATH:$HOME/.yarn/bin"

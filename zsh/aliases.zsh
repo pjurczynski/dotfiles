@@ -29,5 +29,3 @@ alias gpr='google-chrome "https://github.com/PulsateHQ/`basename $(git rev-parse
 ### Not used/assorted
 alias bc="bc -lq"
 alias gctags='ctags -R --languages=ruby --exclude=.git --exclude=log --exclude=tmp . $(bundle list --paths)'
-alias tar="tar -zcvf"
-alias untar="\tar -zxvf"
