@@ -18,19 +18,17 @@ var bindings = function() {
   slate.bind(hyperWith('right'), operations.throwToRight, NO_REPEAT)
 
   // Layouts
-  slate.bind(hyperWith('1'), operations.defaultWorkspace)
-  slate.bind(hyperWith('2'), operations.reviewWorkspace)
-  slate.bind(hyperWith('3'), operations.commitWorkspace)
+  // slate.bind(hyperWith('1'), operations.defaultWorkspace)
+  // slate.bind(hyperWith('2'), operations.reviewWorkspace)
+  // slate.bind(hyperWith('3'), operations.commitWorkspace)
 
   // Focus
   slate.bind(altWith('b'), operations.focusBrowser, NO_REPEAT)
   slate.bind(altWith('c'), operations.focusCommunicator, NO_REPEAT)
   slate.bind(altWith('m'), operations.focusMusic, NO_REPEAT)
   slate.bind(altWith('t'), operations.focusTerminal, NO_REPEAT)
-  //slate.bind(altWith('e'), operations.focusEditor, NO_REPEAT)
+  slate.bind(altWith('e'), operations.focusEditor, NO_REPEAT)
   slate.bind(altWith('g'), operations.focusGithub, NO_REPEAT)
   slate.bind(altWith('h'), operations.focusLeft, NO_REPEAT)
   slate.bind(altWith('l'), operations.focusRight, NO_REPEAT)
-  slate.bind(altWith('left'), operations.focusLeft, NO_REPEAT)
-  slate.bind(altWith('right'), operations.focusRight, NO_REPEAT)
 }

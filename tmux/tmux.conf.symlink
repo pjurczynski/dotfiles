@@ -1,74 +1,169 @@
-# turn on mouse manipulation
-set -g mouse on
-bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'select-pane -t=; copy-mode -e; send-keys -M'"
-bind -n WheelDownPane select-pane -t= \; send-keys -M
+# default statusbar colors
+set-option -g status-bg colour235
+set-option -g status-fg colour179
+set-option -g status-attr default
 
-setw -g mode-keys vi
+# default window title colors
+set-window-option -g window-status-fg colour244
+set-window-option -g window-status-bg default
 
-# Copy mode bindings.
-bind-key -t vi-copy 'v' begin-selection
-bind-key -t vi-copy 'y' copy-pipe "xclip -sel clip -i >/dev/null"
-bind-key -t vi-copy 'u' page-up
-bind-key -t vi-copy 'd' page-down
+# active window title colors
+set-window-option -g window-status-current-fg colour166
+set-window-option -g window-status-current-bg default
+set-window-option -g window-status-current-attr bright
 
-set -g prefix C-a
-bind C-a send-prefix
+# pane border
+set-option -g pane-border-fg colour235
+set-option -g pane-active-border-fg colour240
 
+# pane number display
+set-option -g display-panes-active-colour colour33
+set-option -g display-panes-colour colour166
+
+# clock
+set-window-option -g clock-mode-colour colour64
+
+# status bar right contents
+set -g status-right-length 65
+set -g status-right "#[fg=colour187][#(itunesartist) - #(itunestrack)] #[fg=default][%H:%M %e-%b-%Y]"
+set -g status-interval 5
+
+set-option -g mouse-select-pane on
+set-option -g mouse-select-window on
+set-option -g mode-mouse on
+
+set-window-option -g utf8 on
+
+set-option -g status-keys vi
+set-option -g mode-keys vi
+
+#no command delay
 set -sg escape-time 0
 
-# smart pane switching with awareness of vim splits
-#bind -n C-h if-shell "$is_vim" "send-keys C-h" "select-pane -L"
-#bind -n C-j if-shell "$is_vim" "send-keys C-j" "select-pane -D"
-#bind -n C-k if-shell "$is_vim" "send-keys C-k" "select-pane -U"
-#bind -n C-l if-shell "$is_vim" "send-keys C-l" "select-pane -R"
-#bind -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
+#count windows and panes from 1
+set -g base-index 1
+setw -g pane-base-index 1
 
 
-bind -n M-\ split-window -h -c '#{pane_current_path}'
-bind -n M-- split-window -v -c '#{pane_current_path}'
-bind -T prefix t set-window-option synchronize-panes
+### KEYS ###
 
-bind -n C-k send-keys -R \; clear-history
-#bind -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "xclip -i -f -selection primary | xclip -i -selection clipboard"
+#using C-a as prefix
+unbind C-b
+set-option -g prefix C-a
+bind C-a send-prefix
 
-#bind -n M-= select-layout even-horizontal
-#bind -n M-+ select-layout even-vertical
-#bind -n M-n next-window
-#bind -n M-p previous-window
+unbind /
+bind / last-window
 
-#bind-key -nr    M-Up resize-pane -U
-#bind-key -nr  M-Down resize-pane -D
-#bind-key -nr  M-Left resize-pane -L
-#bind-key -nr M-Right resize-pane -R
+unbind %
+bind s split-window -v
+unbind '"'
+bind v split-window -h
 
-#bind-key -n M-PPage copy-mode -u
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
 
-#bind-key -n M-u copy-mode
-#bind-key -n M-i paste-buffer
+unbind {
+bind { swap-pane -D
+unbind }
+bind } swap-pane -U
 
-#bind-key -n M-8 choose-session
-#bind-key -n M-9 switch-client -p
-#bind-key -n M-0 switch-client -n
+unbind r
+bind r source-file ~/.tmux.conf; display "Reloaded"
 
-set-option -g history-limit 100000
-set-option -g default-shell /bin/zsh
+bind Escape copy-mode
+bind p paste-buffer
 
-# Setting default colour profile for 256 colour.
-set -g default-terminal "screen-256color"
+unbind [
+bind [ previous-window
+unbind ]
+bind ] next-window
 
-# Status bar.
-set -g status-bg black
-set -g status-fg white
-set -g status-left '#[fg=green]#H'
-set -g status-right '#[fg=green]#(uptime | cut -d "," -f 3-)'
-set -g status off
+unbind o
+bind o select-pane -t :.-
 
-setw -g monitor-activity on
-set -g visual-activity on
+bind C-q command-prompt -I "htop" -p "Quick window command: " "new-window '%%'"
 
-set -g set-titles on
-set -g set-titles-string '#S: #W'
-setw -g automatic-rename
+bind -t vi-copy 'v' begin-selection
+bind -t vi-copy 'y' copy-selection
+bind C-c run "tmux save-buffer - | pbcopy"
+bind C-v run "tmux set-buffer \"$(pbpaste)\"; tmux paste-buffer"
 
-set -g @plugin 'tmux-plugins/tmux-copycat'
-run '~/.tmux/plugins/tpm/tpm'
+bind C-s choose-session
+
+# # turn on mouse manipulation
+# set -g mouse on
+# bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'select-pane -t=; copy-mode -e; send-keys -M'"
+# bind -n WheelDownPane select-pane -t= \; send-keys -M
+#
+# setw -g mode-keys vi
+#
+# # Copy mode bindings.
+# bind-key -t vi-copy 'v' begin-selection
+# bind-key -t vi-copy 'y' copy-pipe "xclip -sel clip -i >/dev/null"
+# bind-key -t vi-copy 'u' page-up
+# bind-key -t vi-copy 'd' page-down
+#
+# set -g prefix C-a
+# bind C-a send-prefix
+#
+# set -sg escape-time 0
+#
+# # smart pane switching with awareness of vim splits
+# #bind -n C-h if-shell "$is_vim" "send-keys C-h" "select-pane -L"
+# #bind -n C-j if-shell "$is_vim" "send-keys C-j" "select-pane -D"
+# #bind -n C-k if-shell "$is_vim" "send-keys C-k" "select-pane -U"
+# #bind -n C-l if-shell "$is_vim" "send-keys C-l" "select-pane -R"
+# #bind -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
+#
+#
+# bind -n C-\ split-window -h -c '#{pane_current_path}'
+# bind -n C-- split-window -v -c '#{pane_current_path}'
+# bind -T prefix t set-window-option synchronize-panes
+#
+# bind -n C-k send-keys -R \; clear-history
+# #bind -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "xclip -i -f -selection primary | xclip -i -selection clipboard"
+#
+# #bind -n M-= select-layout even-horizontal
+# #bind -n M-+ select-layout even-vertical
+# #bind -n M-n next-window
+# #bind -n M-p previous-window
+#
+# #bind-key -nr    M-Up resize-pane -U
+# #bind-key -nr  M-Down resize-pane -D
+# #bind-key -nr  M-Left resize-pane -L
+# #bind-key -nr M-Right resize-pane -R
+#
+# #bind-key -n M-PPage copy-mode -u
+#
+# #bind-key -n M-u copy-mode
+# #bind-key -n M-i paste-buffer
+#
+# #bind-key -n M-8 choose-session
+# #bind-key -n M-9 switch-client -p
+# #bind-key -n M-0 switch-client -n
+#
+# set-option -g history-limit 100000
+# set-option -g default-shell /bin/zsh
+#
+# # Setting default colour profile for 256 colour.
+# set -g default-terminal "screen-256color"
+#
+# # Status bar.
+# set -g status-bg black
+# set -g status-fg white
+# set -g status-left '#[fg=green]#H'
+# set -g status-right '#[fg=green]#(uptime | cut -d "," -f 3-)'
+# set -g status off
+#
+# setw -g monitor-activity on
+# set -g visual-activity on
+#
+# set -g set-titles on
+# set -g set-titles-string '#S: #W'
+# setw -g automatic-rename
+#
+# set -g @plugin 'tmux-plugins/tmux-copycat'
+# run '~/.tmux/plugins/tpm/tpm'
