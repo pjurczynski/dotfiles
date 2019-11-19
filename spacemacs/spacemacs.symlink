@@ -20,7 +20,7 @@ values."
    ;; installation feature and you have to explicitly list a layer in the
    ;; variable `dotspacemacs-configuration-layers' to install it.
    ;; (default 'unused)
-   dotspacemacs-enable-lazy-installation 'unused
+   dotspacemacs-enable-lazy-installation 'nil
    ;; If non-nil then Spacemacs will ask for confirmation before installing
    ;; a layer lazily. (default t)
    dotspacemacs-ask-for-lazy-installation t
@@ -31,6 +31,8 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     ruby
+     python
      yaml
      javascript
      ;; ----------------------------------------------------------------
@@ -60,9 +62,9 @@ values."
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
-     syntax-checking
+     ;; syntax-checking
      ;; version-control
-     (typescript :varibles typescript-fmt-tool 'typescript-formatter)
+     ;; (typescript :varibles typescript-fmt-tool 'typescript-formatter)
      chrome
      )
    ;; List of additional packages that will be installed without being
@@ -70,6 +72,7 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
+                                      string-inflection
                                       editorconfig
                                       dracula-theme
                                       )
@@ -363,16 +366,32 @@ you should place your code here."
   (spaceline-toggle-global-on)
   (spaceline-toggle-buffer-position-on)
   (spaceline-toggle-hud-on)
-  (global-company-mode)
 
-  (defun fix-typescript ()
+  (defun regenerate-tags ()
     (interactive)
-    (shell-command
-     (format "tslint --fix %s"
-             (shell-quote-argument (buffer-file-name))))
-  )
+    (start-process "regenerateCtags" nil "ctags"
+      (format "-e -R --exclude=.git --exclude=log --languages=typescript %s*"
+              (projectile-project-root)) ))
 
-  (spacemacs/set-leader-keys-for-major-mode 'typescript-mode "f" 'fix-typescript)
+;;  (defun fix-typescript ()
+;;    (interactive)
+;;    (shell-command
+;;     (format "tslint --fix %s"
+;;             (shell-quote-argument (buffer-file-name))))
+;;    (shell-command
+;;     (format "yarn prettier --write --config %s/.prettierrc %s || true"
+;;             (projectile-project-root)
+;;             (shell-quote-argument (buffer-file-name))
+;;             )
+;;     )
+;;    )
+
+;;  (spacemacs/set-leader-keys-for-major-mode 'typescript-mode "t" 'regenerate-tags)
+;;  (spacemacs/set-leader-keys-for-major-mode 'typescript-mode "f" 'fix-typescript)
+
+  (global-set-key (kbd "C-c i") 'string-inflection-cycle)
+  (global-set-key (kbd "C-c C") 'string-inflection-camelcase)        ;; Force to CamelCase
+  (global-set-key (kbd "C-c L") 'string-inflection-lower-camelcase)  ;; Force to lowerCamelCase
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -399,22 +418,22 @@ you should place your code here."
  '(helm-fuzzy-matching-highlight-fn (quote helm-flx-fuzzy-highlight-match))
  '(helm-fuzzy-sort-fn (quote helm-flx-fuzzy-matching-sort))
  '(line-move-visual t)
+ '(magit-display-buffer-function (quote magit-display-buffer-same-window-except-diff-v1))
  '(package-selected-packages
    (quote
-    (yaml-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl web-mode tagedit slim-mode scss-mode sass-mode pug-mode origami mmm-mode markdown-toc less-css-mode helm-css-scss haml-mode gmail-message-mode ham-mode markdown-mode html-to-markdown gh-md flymd emmet-mode editorconfig edit-server company-web web-completion-data company-quickhelp ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tide typescript-mode spaceline powerline smeargle restart-emacs rainbow-delimiters popwin persp-mode pcre2el paradox spinner orgit org-plus-contrib org-bullets open-junk-file neotree move-text magit-gitflow macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile helm-gitignore request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flycheck-pos-tip pos-tip flycheck pkg-info epl flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit ghub let-alist with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word company-statistics company column-enforce-mode clean-aindent-mode bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup dracula-theme)))
- '(tide-allow-popup-select (quote (code-fix jump-to-implementation refactor)))
- '(tide-completion-detailed t)
- '(tide-format-options nil)
- '(tide-node-executable "/usr/local/bin/node")
- '(tide-tsserver-executable "/usr/local/bin/tsserver")
- '(tide-tsserver-process-environment nil)
- '(typescript-enabled-frameworks (quote (typescript)))
- '(typescript-indent-level 2)
+    (bundler rvm ruby-tools ruby-test-mode rubocop rspec-mode robe rbenv rake minitest chruby inf-ruby string-inflection company-anaconda yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode anaconda-mode pythonic helm-gtags ggtags yaml-mode web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl web-mode tagedit slim-mode scss-mode sass-mode pug-mode origami mmm-mode markdown-toc less-css-mode helm-css-scss haml-mode gmail-message-mode ham-mode markdown-mode html-to-markdown gh-md flymd emmet-mode editorconfig edit-server company-web web-completion-data company-quickhelp ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tide typescript-mode spaceline powerline smeargle restart-emacs rainbow-delimiters popwin persp-mode pcre2el paradox spinner orgit org-plus-contrib org-bullets open-junk-file neotree move-text magit-gitflow macrostep lorem-ipsum linum-relative link-hint indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile helm-gitignore request helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flycheck-pos-tip pos-tip flycheck pkg-info epl flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit magit-popup git-commit ghub let-alist with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word company-statistics company column-enforce-mode clean-aindent-mode bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup dracula-theme)))
+;;  '(tide-allow-popup-select (quote (code-fix jump-to-implementation refactor)))
+;;  '(tide-completion-detailed t)
+;;  '(tide-format-options nil)
+;;  '(tide-node-executable "/usr/local/bin/node")
+;;  '(tide-tsserver-process-environment (quote ("TSS_LOG=-level verbose -file /tmp/tss.log")))
+;;  '(typescript-enabled-frameworks (quote (typescript)))
+;;  '(typescript-indent-level 2)
  '(undo-tree-visualizer-diff t)
  '(undo-tree-visualizer-timestamps t)
  '(yas-snippet-dirs
    (quote
-    ("~/.dotfiles/spacemacs/snippets/" "/Users/pjurczyn/.emacs.d/layers/+completion/auto-completion/local/snippets"))))
+    ("~/.dotfiles/spacemacs/snippets/" "/Users/pjurczyn/.emacs.d/layers/+completion/auto-completion/local/snippets")) t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

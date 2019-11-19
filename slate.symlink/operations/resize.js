@@ -15,6 +15,7 @@ operations = _(operations).extend({
   full: move(full()),
 
   throwToLeft: move(full(LEFT_MONITOR)),
+  throwToMiddle: move(full(MIDDLE_MONITOR)),
   throwToRight: move(full(RIGHT_MONITOR)),
 
   throwToPrimary: move(full(PRIMARY_MONITOR)),

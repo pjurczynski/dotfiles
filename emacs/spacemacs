@@ -1,0 +1,239 @@
+;; -*- mode: emacs-lisp -*-
+(defun dotspacemacs/layers ()
+  (setq-default
+   dotspacemacs-distribution 'spacemacs
+   dotspacemacs-enable-lazy-installation 'unused
+   dotspacemacs-ask-for-lazy-installation t
+   dotspacemacs-configuration-layer-path '("~/.dotfiles/spacemacs/layers/")
+   dotspacemacs-configuration-layers
+   '(
+     themes-megapack
+     (auto-completion :variables
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-complete-with-key-sequence nil
+                      auto-completion-complete-with-key-sequence-delay 0.1
+                      auto-completion-private-snippets-directory "~/.dotfiles/spacemacs/snippets/"
+                      auto-completion-enable-snippets-in-popup nil
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-sort-by-usage t
+                      )
+     ;; better-defaults
+     html
+     (ruby :variables
+           ruby-enable-enh-ruby-mode t
+           ruby-test-runner 'rspec
+           ruby-version-manager 'rvm)
+     helm
+     emacs-lisp
+     git
+     github
+     (markdown :variables
+               markdown-live-preview-engine 'vmd)
+     org
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
+     ;; spell-checking
+     syntax-checking
+     ;; version-control
+     ruby-on-rails
+     javascript
+     typescript
+     xkcd
+     chrome
+     colors
+     yaml
+
+     ;; PRIVATE
+     key-bindings
+     custom-overrides
+     )
+   dotspacemacs-additional-packages '()
+   dotspacemacs-frozen-packages '()
+   dotspacemacs-excluded-packages '()
+   dotspacemacs-install-packages 'used-only))
+
+(defun dotspacemacs/init ()
+  "Initialization function.
+This function is called at the very startup of Spacemacs initialization
+before layers configuration.
+You should not put any user code in there besides modifying the variable
+values."
+  (setq-default
+   dotspacemacs-elpa-https t
+   dotspacemacs-elpa-timeout 5
+   dotspacemacs-check-for-update nil
+   dotspacemacs-elpa-subdirectory nil
+   dotspacemacs-editing-style 'vim
+   dotspacemacs-verbose-loading nil
+   dotspacemacs-startup-banner 'random
+   dotspacemacs-startup-lists '((todos . 3)
+                                (recents . 5)
+                                (projects . 7))
+   dotspacemacs-startup-buffer-responsive t
+   dotspacemacs-scratch-mode 'text-mode
+   dotspacemacs-themes '(dracula
+                         zenburn
+                         farmhouse-dark
+                         spacemacs-dark
+                         spacemacs-light)
+   dotspacemacs-colorize-cursor-according-to-state t
+   dotspacemacs-default-font '("Undefined"
+                               :size 13
+                               :weight normal
+                               :width normal
+                               :powerline-scale 1.1)
+   dotspacemacs-leader-key "SPC"
+   dotspacemacs-emacs-command-key "SPC"
+   dotspacemacs-ex-command-key ":"
+   dotspacemacs-emacs-leader-key "M-m"
+   dotspacemacs-major-mode-leader-key ","
+   dotspacemacs-major-mode-emacs-leader-key "C-M-m"
+   dotspacemacs-distinguish-gui-tab nil
+   dotspacemacs-remap-Y-to-y$ nil
+   dotspacemacs-retain-visual-state-on-shift t
+   dotspacemacs-visual-line-move-text nil
+   dotspacemacs-ex-substitute-global nil
+   dotspacemacs-default-layout-name "Default"
+   dotspacemacs-display-default-layout nil
+   dotspacemacs-auto-resume-layouts t
+   dotspacemacs-large-file-size 5
+   dotspacemacs-auto-save-file-location 'cache
+   dotspacemacs-max-rollback-slots 5
+   dotspacemacs-helm-resize nil
+   dotspacemacs-helm-no-header nil
+   dotspacemacs-helm-position 'bottom
+   dotspacemacs-helm-use-fuzzy 'always
+   dotspacemacs-enable-paste-transient-state nil
+   dotspacemacs-which-key-delay 0.4
+   dotspacemacs-which-key-position 'bottom
+   dotspacemacs-loading-progress-bar nil
+   dotspacemacs-fullscreen-at-startup nil
+   dotspacemacs-fullscreen-use-non-native nil
+   dotspacemacs-maximized-at-startup nil
+   dotspacemacs-active-transparency 90
+   dotspacemacs-inactive-transparency 90
+   dotspacemacs-show-transient-state-title t
+   dotspacemacs-show-transient-state-color-guide t
+   dotspacemacs-mode-line-unicode-symbols t
+   dotspacemacs-smooth-scrolling t
+   dotspacemacs-line-numbers nil
+   dotspacemacs-folding-method 'evil
+   dotspacemacs-smartparens-strict-mode nil
+   dotspacemacs-smart-closing-parenthesis nil
+   dotspacemacs-highlight-delimiters 'all
+   dotspacemacs-persistent-server nil
+   dotspacemacs-search-tools '("ag" "ack" "pt" "grep")
+   dotspacemacs-default-package-repository nil
+   dotspacemacs-whitespace-cleanup 'trailing
+   ))
+
+(defun dotspacemacs/user-init ()
+  "Initialization function for user code.
+It is called immediately after `dotspacemacs/init', before layer configuration
+executes.
+ This function is mostly useful for variables that need to be set
+before packages are loaded. If you are unsure, you should try in setting them in
+`dotspacemacs/user-config' first."
+  (defadvice rspec-compile (around rspec-compile-around)
+    "Use BASH shell for running the specs because of ZSH issues."
+    (let ((shell-file-name "/bin/bash"))
+      ad-do-it))
+  (ad-activate 'rspec-compile)
+
+  (add-hook 'change-major-mode-after-body-hook
+    (lambda ()
+      (when (> (buffer-size) 40000)
+        (turn-off-show-smartparens-mode))))
+
+  )
+
+(defun dotspacemacs/user-config ()
+  "Configuration function for user code.
+This function is called at the very end of Spacemacs initialization after
+layers configuration.
+This is the place where most of your configurations should be done. Unless it is
+explicitly specified that a variable should be set before a package is loaded,
+you should place your code here."
+
+  (spaceline-toggle-persp-name-on)
+  (spaceline-toggle-workspace-number-on)
+  (spaceline-toggle-window-number-on)
+  (spaceline-toggle-evil-state-on)
+  (spaceline-toggle-anzu-on)
+  (spaceline-toggle-auto-compile-on)
+  (spaceline-toggle-buffer-modified-on)
+  (spaceline-toggle-buffer-size-off)
+  (spaceline-toggle-buffer-id-on)
+  (spaceline-toggle-remote-host-on)
+  (spaceline-toggle-major-mode-off)
+  (spaceline-toggle-flycheck-error-on)
+  (spaceline-toggle-flycheck-warning-on)
+  (spaceline-toggle-flycheck-info-on)
+  (spaceline-toggle-minor-modes-off)
+  (spaceline-toggle-process-on)
+  (spaceline-toggle-erc-track-on)
+  (spaceline-toggle-version-control-on)
+  (spaceline-toggle-org-pomodoro-on)
+  (spaceline-toggle-org-clock-on)
+  (spaceline-toggle-nyan-cat-on)
+  (spaceline-toggle-battery-on)
+  (spaceline-toggle-which-function-on)
+  (spaceline-toggle-python-pyvenv-on)
+  (spaceline-toggle-python-pyenv-on)
+  (spaceline-toggle-paradox-menu-on)
+  (spaceline-toggle-selection-info-on)
+  (spaceline-toggle-input-method-on)
+  (spaceline-toggle-buffer-encoding-abbrev-off)
+  (spaceline-toggle-point-position-on)
+  (spaceline-toggle-line-column-on)
+  (spaceline-toggle-global-on)
+  (spaceline-toggle-buffer-position-on)
+  (spaceline-toggle-hud-on)
+
+  )
+
+;; Do not write anything past this comment. This is where Emacs will
+;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(browse-url-browser-function (quote browse-url-generic))
+ '(browse-url-generic-program "google-chrome")
+ '(css-indent-offset 2)
+ '(emmet-mode 0 t)
+ '(evil-search-module (quote evil-search))
+ '(evil-split-window-below t)
+ '(evil-vsplit-window-right t)
+ '(fill-column 100)
+ '(grep-find-ignored-files
+   (quote
+    (".#*" "*.o" "*~" "*.bin" "*.lbin" "*.so" "*.a" "*.ln" "*.blg" "*.bbl" "*.elc" "*.lof" "*.glo" "*.idx" "*.lot" "*.fmt" "*.tfm" "*.class" "*.fas" "*.lib" "*.mem" "*.x86f" "*.sparcf" "*.dfsl" "*.pfsl" "*.d64fsl" "*.p64fsl" "*.lx64fsl" "*.lx32fsl" "*.dx64fsl" "*.dx32fsl" "*.fx64fsl" "*.fx32fsl" "*.sx64fsl" "*.sx32fsl" "*.wx64fsl" "*.wx32fsl" "*.fasl" "*.ufsl" "*.fsl" "*.dxl" "*.lo" "*.la" "*.gmo" "*.mo" "*.toc" "*.aux" "*.cp" "*.fn" "*.ky" "*.pg" "*.tp" "*.vr" "*.cps" "*.fns" "*.kys" "*.pgs" "*.tps" "*.vrs" "*.pyc" "*.pyo" "*.png" "*.jpg" "*.jpeg" "*.gif" "*.ttf" "*.otf" "*.mov" "*.avi")))
+ '(helm-grep-ignored-files
+   (quote
+    ("*.png" "*.jpeg" "*.jpg" "*.tff" ".#*" "*.o" "*~" "*.bin" "*.lbin" "*.so" "*.a" "*.ln" "*.blg" "*.bbl" "*.elc" "*.lof" "*.glo" "*.idx" "*.lot" "*.fmt" "*.tfm" "*.class" "*.fas" "*.lib" "*.mem" "*.x86f" "*.sparcf" "*.dfsl" "*.pfsl" "*.d64fsl" "*.p64fsl" "*.lx64fsl" "*.lx32fsl" "*.dx64fsl" "*.dx32fsl" "*.fx64fsl" "*.fx32fsl" "*.sx64fsl" "*.sx32fsl" "*.wx64fsl" "*.wx32fsl" "*.fasl" "*.ufsl" "*.fsl" "*.dxl" "*.lo" "*.la" "*.gmo" "*.mo" "*.toc" "*.aux" "*.cp" "*.fn" "*.ky" "*.pg" "*.tp" "*.vr" "*.cps" "*.fns" "*.kys" "*.pgs" "*.tps" "*.vrs" "*.pyc" "*.pyo")))
+ '(js-indent-level 2)
+ '(js2-basic-offset 2)
+ '(js2-strict-trailing-comma-warning nil)
+ '(magit-diff-arguments
+   (quote
+    ("--stat" "--no-ext-diff" "--diff-algorithm=histogram")))
+ '(magit-display-buffer-function (quote magit-display-buffer-fullframe-status-topleft-v1))
+ '(mode-line-format (quote ("%e" (:eval (spaceline-ml-main)))))
+ '(projectile-globally-ignored-file-suffixes (quote ("png" "jpg" "otf" "mov" "jpeg" "ttf")))
+ '(projectile-globally-ignored-files (quote ("TAGS" "*.png" "*.tff" "*.jpg")))
+ '(rspec-use-bundler-when-possible t)
+ '(rspec-use-rvm t)
+ '(web-mode-attr-indent-offset 2)
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-css-indent-offset 2)
+ '(web-mode-markup-indent-offset 2))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

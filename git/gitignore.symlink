@@ -16,5 +16,16 @@ GPATH
 GSYMS
 *.#*
 
+.projections
+.vscode
+
 debug-private.scss
 node_modules
+
+.prettierignore
+
+libs/tsconfig.json
+
+apps/inspection/tsconfig.json
+
+*.code-workspace

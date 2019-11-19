@@ -12,6 +12,10 @@
         df = diff
         dc = diff --cached
         co = checkout
+        rs = rebase origin/staging
+        amend = commit --amend
+        cm = commit -m
+				blist = branch --sort=-committerdate
         promote = !$ZSH/bin/git-promote
         wtf     = !$ZSH/bin/git-wtf
         rank-contributors = !$ZSH/bin/git-rank-contributors
@@ -25,7 +29,7 @@
         ui = true
 [core]
         excludesfile = ~/.gitignore
-	editor = nvim
+	editor = vim
         pager = "diff-so-fancy | less --tabs=4 -RFX"
 	autocrlf = input
 [apply]
@@ -47,7 +51,7 @@
 [diff]
 	algorithm = histogram
 [github]
-	user = 
-	oauth-token = 
+	user =
+	oauth-token =
 [rerere]
 	enabled = true

@@ -10,7 +10,8 @@ operations = _(operations).extend({
   focusMusic:         focus({ app:  applications().music }),
   focusTerminal:      focus({ app:  applications().terminal }),
   focusEditor:        focus({ app:  applications().editor }),
-  focusGithub:        focus({ app:  applications().github }),
+  focusGit:           focus({ app:  applications().git }),
+  focusTodos:         focus({ app:  applications().todos }),
 
   focusLeft:   focus({ direction:  'left' }),
   focusRight:  focus({ direction:  'right' })

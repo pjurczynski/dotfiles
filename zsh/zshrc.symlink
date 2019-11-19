@@ -2,23 +2,27 @@
 source /etc/profile
 export OMZ_ZSH_ROOT="$HOME/.oh-my-zsh"
 ZSH=$OMZ_ZSH_ROOT # for oh my zsh configuration
-export ZSH_CUSTOM="$HOME/.dotfiles/zsh/derek_wyatt"
+# export ZSH_CUSTOM="$HOME/.dotfiles/zsh/derek_wyatt"
 export ZSH_ROOT="$HOME/.dotfiles/zsh"
 export NO_AT_BRIDGE=1 # fix for webkit issue (http://elementaryos.stackexchange.com/questions/3819/couldnt-connect-to-accessibility-bus-failed-to-connect-to-socket)
+export CONVENTIONAL_GITHUB_RELEASER_TOKEN=3d2cd61747ef4dcc7d9245738c2115d0b1671095
 
 ZSH_THEME=""
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(gitfast regex-dirstack vim-interaction zsh-syntax-highlighting)
+plugins=(gitfast regex-dirstack vim-interaction zsh-syntax-highlighting zsh-autosuggestions yarn-autocompletions)
 source $OMZ_ZSH_ROOT/oh-my-zsh.sh
-source $ZSH_CUSTOM/themes/gnzh.zsh-theme
+# source $ZSH_CUSTOM/themes/gnzh.zsh-theme
 source $ZSH_ROOT/aliases.zsh
+source $ZSH_ROOT/personal.zsh
 source $ZSH_ROOT/completion.zsh
 source $ZSH_ROOT/history.zsh
 source $ZSH_ROOT/keys.zsh
 source $ZSH_ROOT/prompt.zsh
 source $ZSH_ROOT/window.zsh
 source $ZSH_ROOT/autoloads.zsh
+
+source $(brew --prefix autoenv)/activate.sh
 
 export EDITOR=nvim
 
@@ -34,9 +38,9 @@ setopt pushd_ignore_dups
 export SS_DISPLAY_LIMIT=25
 
 # Base16 Shell
-# BASE16_SCHEME="default"
-# BASE16_SHELL=$HOME/.config/base16-shell/
-# [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+BASE16_SCHEME="default"
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 # base16_default-dark
 
 # Configure NVM
@@ -66,3 +70,5 @@ if type "rbenv" > /dev/null; then
 fi
 eval "$(fasd --init auto)"
 export PATH="$PATH:$HOME/.yarn/bin"
+export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
+export PATH="$PATH:$HOME/Applications/maven/bin"
