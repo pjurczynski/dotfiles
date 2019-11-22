@@ -1,6 +1,3 @@
-if type "exa" > /dev/null; then
-    alias ls=exa
-fi
 ### ls aliases
 alias ll='ls -GhalF'
 alias la='ls -GA'

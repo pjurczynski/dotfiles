@@ -11,14 +11,19 @@
         st = status
         df = diff
         dc = diff --cached
-        co = checkout
-        rs = rebase origin/staging
+        eo = checkout
+        rs = !git-reup origin staging
+				co = checkout
         amend = commit --amend
         cm = commit -m
 				blist = branch --sort=-committerdate
-        promote = !$ZSH/bin/git-promote
-        wtf     = !$ZSH/bin/git-wtf
-        rank-contributors = !$ZSH/bin/git-rank-contributors
+        promote = git-promote
+        wtf     = git-wtf
+        rank-contributors = git-rank-contributors
+        track = git-track
+        nuke = git-nuke
+        delete-local = git-delete-local-merged
+        undo = git-undo
         count   = !git shortlog -sn
         slap = "log --oneline --decorate --all --graph"
 
@@ -29,9 +34,9 @@
         ui = true
 [core]
         excludesfile = ~/.gitignore
-	editor = vim
+				editor = nvim
         pager = "diff-so-fancy | less --tabs=4 -RFX"
-	autocrlf = input
+				autocrlf = input
 [apply]
         whitespace = nowarn
 [mergetool]

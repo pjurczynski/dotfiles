@@ -6,11 +6,12 @@ ZSH=$OMZ_ZSH_ROOT # for oh my zsh configuration
 export ZSH_ROOT="$HOME/.dotfiles/zsh"
 export NO_AT_BRIDGE=1 # fix for webkit issue (http://elementaryos.stackexchange.com/questions/3819/couldnt-connect-to-accessibility-bus-failed-to-connect-to-socket)
 export CONVENTIONAL_GITHUB_RELEASER_TOKEN=3d2cd61747ef4dcc7d9245738c2115d0b1671095
+export DISABLE_AUTO_UPDATE=false
 
 ZSH_THEME=""
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(gitfast regex-dirstack vim-interaction zsh-syntax-highlighting zsh-autosuggestions yarn-autocompletions)
+plugins=(gitfast vim-interaction zsh-syntax-highlighting zsh-autosuggestions yarn-autocompletions)
 source $OMZ_ZSH_ROOT/oh-my-zsh.sh
 # source $ZSH_CUSTOM/themes/gnzh.zsh-theme
 source $ZSH_ROOT/aliases.zsh
@@ -72,3 +73,5 @@ eval "$(fasd --init auto)"
 export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
 export PATH="$PATH:$HOME/Applications/maven/bin"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
